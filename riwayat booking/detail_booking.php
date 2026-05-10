@@ -139,9 +139,10 @@ if (!$data) {
             <nav class="nav-menu">
                 <a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a>
                 <a href="../booking/booking.php" class="nav-link">Booking</a>
-                <a href="riwayat.php" class="nav-link active">Riwayat Booking</a>
+                <a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a>
                 <a href="#" class="nav-link">Hasil Balapan</a>
                 <a href="#" class="nav-link">Leaderboard</a>
+                <a href="../profil/profil.php" class="nav-link">Profil Saya</a>
             </nav>
             <div class="sidebar-bottom">
                 <div class="sidebar-user">

@@ -39,10 +39,11 @@ $paket_query = mysqli_query($koneksi, "SELECT * FROM paket_bermain");
             </div>
             <ul class="nav-menu">
                 <li><a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a></li>
-                <li><a href="#" class="nav-link active">Booking</a></li>
+                <li><a href="../booking/booking.php" class="nav-link active">Booking</a></li>
                 <li><a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a></li>
                 <li><a href="#" class="nav-link">Hasil Balapan</a></li>
                 <li><a href="#" class="nav-link">Leaderboard</a></li>
+                <li><a href="../profil/profil.php" class="nav-link">Profil Saya</a></li> 
             </ul>
         </div>
         <div class="sidebar-bottom">

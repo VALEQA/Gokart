@@ -50,13 +50,14 @@ $query_riwayat = mysqli_query($koneksi, "
                 <h2>GOKART RACING</h2>
                 <p>Management System</p>
             </div>
-            <nav class="nav-menu">
-                <a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a>
-                <a href="../booking/booking.php" class="nav-link">Booking</a>
-                <a href="riwayat.php" class="nav-link active">Riwayat Booking</a>
-                <a href="#" class="nav-link">Hasil Balapan</a>
-                <a href="#" class="nav-link">Leaderboard</a>
-            </nav>
+                <nav class="nav-menu">
+                    <a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a>
+                    <a href="../booking/booking.php" class="nav-link">Booking</a>
+                    <a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a>
+                    <a href="#" class="nav-link">Hasil Balapan</a>
+                    <a href="#" class="nav-link">Leaderboard</a>
+                    <a href="../profil/profil.php" class="nav-link">Profil Saya</a>
+                </nav>
             <div class="sidebar-bottom">
                 <div class="sidebar-user">
                     <p><strong><?= htmlspecialchars($user['nama_lengkap']); ?></strong></p>
