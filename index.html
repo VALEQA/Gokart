@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go-Kart Racing Hub - Full Throttle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  
+
+    <div class="hero">
+    <h2 class="main-subtitle">GO-KART RACING HUB</h2>
+    <h1 class="main-title">FULL THROTTLE</h1>
+    <p class="hero-desc">Layout trek, spesifikasi mesin, rekam jejak putaran, sinyal bendera, dan detail fasilitas — semuanya di satu tempat.</p>
+    
+    <div class="hero-cta-container">
+        <a href="login.php" class="hero-login-btn">🏁 BOOK YOUR RACE - START LOGIN</a>
+    </div>
+
+    <div class="scroll-down" id="scroll-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </div>
+</div>
+
+        <div id="specs" class="panel">
+            <h2 class="panel-header">Engine Specifications</h2>
+            <p class="panel-desc">Kekuatan pendorong mesin-mesin di trek</p>
+            
+            <div class="engine-specs">
+                <div class="spec-column-left">
+                    <div class="spec-item"><span class="spec-label">Tipe Mesin</span><span class="spec-value orange">4-Stroke, Single Cylinder</span></div>
+                    <div class="spec-item"><span class="spec-label">Tenaga Maksimum</span><span class="spec-value">6.5 HP @ 3,600 RPM</span></div>
+                    <div class="spec-item"><span class="spec-label">Sistem Bahan Bakar</span><span class="spec-value">Karburetor</span></div>
+                    <div class="spec-item"><span class="spec-label">Transmisi</span><span class="spec-value orange">Kopling Sentrifugal, Chain Drive</span></div>
+                </div>
+                <div class="spec-column-right">
+                    <div class="spec-item"><span class="spec-label">Kapasitas</span><span class="spec-value">200cc</span></div>
+                    <div class="spec-item"><span class="spec-label">Torsi</span><span class="spec-value">12 Nm @ 2,500 RPM</span></div>
+                    <div class="spec-item"><span class="spec-label">Sistem Pendingin</span><span class="spec-value">Berpendingin Udara</span></div>
+                    <div class="spec-item"><span class="spec-label">Kecepatan Tertinggi</span><span class="spec-value">~70 km/jam</span></div>
+                </div>
+            </div>
+
+            <h3 class="curve-title">Kurva Tenaga & Torsi</h3>
+            <div class="power-curve-placeholder">
+                <span class="pcp-rpm r1">1,000 RPM</span>
+                <span class="pcp-rpm r2">2,500</span>
+                <span class="pcp-rpm r3">4,000 RPM</span>
+            </div>
+        </div>
+
+   <div class="panel">
+            <h2 class="panel-header">Trek Balap</h2>
+            <p class="panel-desc">Menjelajahi liku-liku sirkuit</p>
+
+            <div class="race-track-map">
+    <svg id="track-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
+        <path d="M 400,450 L 150,450 C 100,450 100,350 100,300 L 100,100 C 100,50 300,50 400,50" stroke="#4a148c" stroke-width="40" fill="none" />
+        
+        <path d="M 400,50 L 900,50 C 950,50 950,150 950,200 C 950,250 900,250 900,300" stroke="#1b5e20" stroke-width="40" fill="none" />
+        
+        <path d="M 900,300 C 900,350 850,350 800,350 L 500,350 C 450,350 450,450 400,450" stroke="#f57f17" stroke-width="40" fill="none" />
+
+        <path d="M 100,100 C 100,50 300,50 300,50 L 900,50 C 950,50 950,150 950,200 C 950,250 900,250 900,300 C 900,350 850,350 800,350 L 500,350 C 450,350 450,450 400,450 L 150,450 C 100,450 100,350 100,300 Z" stroke="#d32f2f" stroke-width="5" stroke-dasharray="15, 10" fill="none" />
+        
+        <g id="car-group">
+            <image 
+                href="kart.png" 
+                x="-30" 
+                y="-35" 
+                width="60" 
+                height="60" 
+            />
+            <animateMotion 
+                dur="6s" 
+                repeatCount="indefinite" 
+                path="M 100,100 C 100,50 300,50 300,50 L 900,50 C 950,50 950,150 950,200 C 950,250 900,250 900,300 C 900,350 850,350 800,350 L 500,350 C 450,350 450,450 400,450 L 150,450 C 100,450 100,350 100,300 Z" 
+                rotate="auto"   
+            />
+        </g>
+        <g id="start-finish-group">
+            <text x="400" y="15" fill="#ffffff" font-family="'Orbitron', sans-serif" font-size="16" text-anchor="middle" font-weight="bold">START / FINISH</text>
+            <line x1="400" y1="20" x2="400" y2="78" stroke="#ffffff" stroke-width="9" />
+        </g>
+    
+    </svg>
+    
+    <div class="turn-label" style="top: 15%; right: 7%;">T1</div>
+    <div class="turn-label" style="top: 55%; right: 7%;">T2</div>
+    <div class="turn-label" style="bottom: 25%; left: 48%;">T3</div>
+    <div class="turn-label" style="bottom: 5%; left: 38%;">T4</div>
+    <div class="turn-label" style="bottom: 5%; left: 12%;">T5</div>
+    <div class="turn-label" style="top: 15%; left: 8%;">T6</div>
+
+    
+
+        </div>
+            <div class="track-stats">
+                <div class="stat-box"><div class="stat-value">200 m</div><div class="stat-label">Panjang</div></div>
+                <div class="stat-box"><div class="stat-value">6</div><div class="stat-label">Tikungan</div></div>
+                <div class="stat-box"><div class="stat-value">3</div><div class="stat-label">Lurus</div></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2 class="panel-header">Waktu Tercepat Tercatat</h2>
+            <p class="panel-desc">Rekor putaran yang belum terkalahkan</p>
+            
+            <div class="lap-record-label">LAP RECORD</div>
+            <div class="lap-record">15<span class="red">.351</span></div>
+            <div class="lap-record-sub">seconds</div>
+            <div class="record-driver-info">Set by Driver #7 — Maret 2025</div>
+
+          <div class="sector-times">
+                <div class="sector-box green"><div class="sector-title"><span class="dot"></span>SECTOR 1</div><div class="sector-time">4.893s</div></div>
+                <div class="sector-box yellow"><div class="sector-title"><span class="dot"></span>SECTOR 2</div><div class="sector-time">5.371s</div></div>
+                <div class="sector-box purple"><div class="sector-title"><span class="dot"></span>SECTOR 3</div><div class="sector-time">5.267s</div></div>
+            </div>
+
+            <div class="sector-breakdown-label">Sector Breakdown</div>
+            <div class="sector-breakdown-bar">
+                <div class="sb-segment green"></div>
+                <div class="sb-segment yellow"></div>
+                <div class="sb-segment purple"></div>
+            </div>
+
+        <div class="panel">
+            <h2 class="panel-header">Sinyal Bendera</h2>
+            <p class="panel-desc">Memahami sinyal yang menjaga keselamatan Anda di trek</p>
+            
+            <div class="flags-grid">
+                <div class="flag-box green"><div class="flag-header"><div class="flag-color green-bg"></div><h4 class="flag-name">Bendera Hijau</h4></div><p class="flag-desc">Trek bersih — balapan sedang berlangsung. Kecepatan penuh ke depan.</p></div>
+                <div class="flag-box yellow"><div class="flag-header"><div class="flag-color yellow-bg"></div><h4 class="flag-name">Bendera Kuning</h4></div><p class="flag-desc">Awas di trek. Perlambat, tidak diperbolehkan menyalip.</p></div>
+                <div class="flag-box red"><div class="flag-header"><div class="flag-color red-bg"></div><h4 class="flag-name">Bendera Merah</h4></div><p class="flag-desc">Sesi segera dihentikan. Semua kart harus berhenti.</p></div>
+                <div class="flag-box white"><div class="flag-header"><div class="flag-color checkered-bg"></div><h4 class="flag-name">Bendera Kotak</h4></div><p class="flag-desc">Balapan berakhir. Sesi atau balapan telah selesai.</p></div>
+                <div class="flag-box blue"><div class="flag-header"><div class="flag-color blue-bg"></div><h4 class="flag-name">Bendera Biru</h4></div><p class="flag-desc">Kart yang lebih cepat mendekat. Biarkan mereka lewat dengan aman.</p></div>
+                <div class="flag-box black"><div class="flag-header"><div class="flag-color white-bg"></div><h4 class="flag-name">Bendera Hitam</h4></div><p class="flag-desc">Driver diskualifikasi atau harus kembali ke pit. Penalty dikeluarkan.</p></div>
+            </div>
+        </div>
+ <div class="panel">
+            <h2 class="panel-header" style="text-align: center;">🪪 RACING LICENSE GENERATOR</h2>
+            <p class="panel-desc" style="text-align: center;">Buat Kartu Lisensi Balap Virtualmu Sendiri!</p>
+
+            <div class="license-form">
+                <input type="text" id="driver-name" placeholder="Nama Lengkap" autocomplete="off">
+                <input type="text" id="driver-nickname" placeholder="Julukan Balap (Opsional)" autocomplete="off">
+                <input type="number" id="driver-number" placeholder="Nomor Mobil Pilihan (0-99)" min="0" max="99">
+                
+                <label for="driver-photo" class="file-label">
+                    <span id="file-label-text">📸 Upload Foto Profil (Opsional)</span>
+                </label>
+                <input type="file" id="driver-photo" accept="image/*" style="display: none;">
+
+                <button id="generate-btn">CETAK LISENSI</button>
+            </div>
+
+           <div id="id-card-wrapper" style="display: none; text-align: center; margin-top: 40px;">
+    
+    <div class="id-card" id="id-card-result">
+        <div class="id-hologram"></div>
+        
+        <div class="id-header">
+            <div class="header-left">
+                <span class="country">IDN</span>
+                <span class="title">RACING SUPER LICENSE</span>
+            </div>
+            <div class="header-right">FULL THROTTLE</div>
+        </div>
+
+        <div class="id-body">
+            <div class="id-photo-container">
+                <div class="id-photo" id="card-photo">🏁</div>
+                <div class="id-class" id="card-class">PRO CLASS</div>
+            </div>
+            
+            <div class="id-details">
+                <div class="detail-row">
+                    <div class="field">
+                        <p class="label">LICENSE NO.</p>
+                        <h4 id="card-license-no">FT-8890-X</h4>
+                    </div>
+                    <div class="field">
+                        <p class="label">BLOOD TYPE</p>
+                        <h4 id="card-blood">O+</h4>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <p class="label">DRIVER NAME</p>
+                    <h3 id="card-name">MAX VERSTAPPEN</h3>
+                </div>
+                <div class="field">
+                    <p class="label">RACING ALIAS</p>
+                    <h4 class="alias" id="card-nickname">"MAD MAX"</h4>
+                </div>
+                
+                <div class="signature-box">
+                    <p class="label">HOLDER'S SIGNATURE</p>
+                    <div class="signature" id="card-signature">M. Verstappen</div>
+                </div>
+            </div>
+            
+            <div class="id-side">
+                <div class="id-chip"></div>
+                <div class="id-number" id="card-number">33</div>
+            </div>
+        </div>
+
+        <div class="id-footer">
+            <div class="id-barcode"></div>
+            <div class="id-legal">
+                ISSUED: 05/2026<br>
+                VALID THRU: 12/2028
+            </div>
+        </div>
+    </div>
+
+    <button id="save-btn" class="save-btn">📥 DOWNLOAD HD LICENSE</button>
+</div>
+        <div class="panel">
+            <h2 class="panel-header">Fasilitas</h2>
+            <p class="panel-desc">Segala yang Anda butuhkan untuk hari balapan yang hebat</p>
+            
+            <div class="facilities-grid">
+                <div class="facility-box">
+                    <div class="facility-icon-container">🛋️</div>
+                    <div><h4 class="facility-title">Kursi Penonton</h4><p class="facility-desc">Tribun tertutup dengan visibilitas trek penuh untuk hingga 200 tamu.</p></div>
+                </div>
+                <div class="facility-box">
+                    <div class="facility-icon-container">🔧</div>
+                    <div><h4 class="facility-title">Area Pit Stop</h4><p class="facility-desc">Teluk yang dilengkapi untuk layanan kart, ganti ban, dan perbaikan cepat.</p></div>
+                </div>
+                <div class="facility-box">
+                    <div class="facility-icon-container">🛋️</div>
+                    <div><h4 class="facility-title">Lounge Driver</h4><p class="facility-desc">Lounge ber-AC dengan monitor yang menampilkan waktu putaran langsung.</p></div>
+                </div>
+                <div class="facility-box">
+                    <div class="facility-icon-container">☕</div>
+                    <div><h4 class="facility-title">Kafe & Segaran</h4><p class="facility-desc">Kafe di tempat yang menyajikan minuman panas dan dingin, makanan ringan, dan hidangan.</p></div>
+                </div>
+                <div class="facility-box">
+                    <div class="facility-icon-container">🛡️</div>
+                    <div><h4 class="facility-title">Ruang Briefing</h4><p class="facility-desc">Ruang khusus untuk orientasi keselamatan pra-balapan wajib.</p></div>
+                </div>
+                <div class="facility-box">
+                    <div class="facility-icon-container">👷</div>
+                    <div><h4 class="facility-title">Sewa Gear & Helm</h4><p class="facility-desc">Berbagai macam helm, setelan, dan sarung tangan tersedia dalam semua ukuran.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <footer>
+        © 2025 Go-Kart Racing Hub. All rights reserved.
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+/* ROOT VARIABLES */
+:root {
+  --primary: #e63946;
+  --primary-light: #ffe5e5;
+  --dark: #1d3557;
+  --light: #f1faee;
+  --gray: #6c757d;
+  --white: #ffffff;
+  --bg-body: #f8f9fa;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+/* GLOBAL STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  width: 260px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid #eee;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.brand {
+  padding-bottom: 1rem;
+}
+
+.brand h2 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.brand p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.nav-menu {
+  list-style: none;
+  margin-top: 2rem;
+  flex-grow: 1;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--gray);
+  display: block;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.sidebar-user {
+  padding: 1rem;
+  background: var(--bg-body);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.sidebar-user p {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user small {
+  color: var(--gray);
+  display: block;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* MAIN CONTENT */
+.main {
+  margin-left: 260px;
+  padding: 2.5rem 3.5rem;
+  width: calc(100% - 260px);
+}
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+/* CARDS GLOBAL */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+}
+
+/* STATS SECTION */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  text-align: center;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card p {
+  color: var(--gray);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+/* BOOKING LIST SECTION */
+.booking h2,
+.aksi h2 {
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Container agar list booking bisa di-scroll jika terlalu banyak */
+.booking-list {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.booking-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.booking-list::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.booking-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid var(--primary);
+  transition: var(--transition);
+}
+
+.booking-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.booking-date {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--dark);
+}
+
+.booking-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.booking-detail span {
+  font-size: 0.9rem;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--gray);
+  padding: 2rem;
+  font-style: italic;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #c12e3a;
+  box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+}
+
+.btn-secondary {
+  background: var(--light);
+  color: var(--dark);
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e2eadd;
+}
+
+/* AKSI CEPAT */
+.aksi {
+  margin-top: 3rem;
+}
+
+.aksi-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.aksi-box {
+  text-align: left;
+  transition: var(--transition);
+  border: 1px solid #eee;
+}
+
+.aksi-box.clickable:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.aksi-box h3 {
+  margin-bottom: 0.4rem;
+  color: var(--dark);
+  font-size: 1.15rem;
+}
+
+.aksi-box p {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+  .main {
+    padding: 2rem;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+    padding: 2rem 0.5rem;
+  }
+  .brand h2,
+  .brand p,
+  .nav-link span,
+  .sidebar-user,
+  .logout-btn span {
+    display: none;
+  }
+  .main {
+    margin-left: 80px;
+    padding: 1.5rem;
+  }
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .booking-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .booking-right {
+    width: 100%;
+  }
+  .booking-right button {
+    width: 100%;
+  }
+  .aksi-container {
+    grid-template-columns: 1fr;
+  }
+}

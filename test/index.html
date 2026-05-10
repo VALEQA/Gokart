@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go-Kart Racing Hub - Full Throttle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <h2 class="main-subtitle">GO-KART RACING HUB</h2>
+        <h1 class="main-title">FULL THROTTLE</h1>
+        <p class="hero-desc">Layout trek, spesifikasi mesin, dan lisensi balap — semuanya di satu tempat.</p>
+        
+        <div class="hero-cta-container">
+            <!-- Menu Login/Register Gabungan -->
+            <div class="auth-buttons">
+                <a href="login.php" class="hero-btn login-btn">🏁 LOGIN</a>
+                <a href="register.php" class="hero-btn reg-btn">REGISTER</a>
+            </div>
+        </div>
+
+        <div class="scroll-down" id="scroll-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ENGINE SPECS -->
+        <section id="specs" class="panel">
+            <h2 class="panel-header">Engine Specifications</h2>
+            <p class="panel-desc">Kekuatan pendorong mesin-mesin di trek</p>
+            
+            <div class="engine-specs">
+                <div class="spec-column">
+                    <div class="spec-item"><span class="spec-label">Tipe Mesin</span><span class="spec-value orange">4-Stroke, Single Cylinder</span></div>
+                    <div class="spec-item"><span class="spec-label">Tenaga Maksimum</span><span class="spec-value">6.5 HP @ 3,600 RPM</span></div>
+                    <div class="spec-item"><span class="spec-label">Transmisi</span><span class="spec-value orange">Sentrifugal Clutch</span></div>
+                </div>
+                <div class="spec-column">
+                    <div class="spec-item"><span class="spec-label">Kapasitas</span><span class="spec-value">200cc</span></div>
+                    <div class="spec-item"><span class="spec-label">Torsi</span><span class="spec-value">12 Nm @ 2,500 RPM</span></div>
+                    <div class="spec-item"><span class="spec-label">Top Speed</span><span class="spec-value">~70 km/jam</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRACK MAP -->
+        <section class="panel">
+            <h2 class="panel-header">Trek Balap</h2>
+            <div class="race-track-map">
+                <svg id="track-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+                    <!-- Jalur Trek Utama -->
+                    <path d="M 100,100 C 100,50 300,50 300,50 L 900,50 C 950,50 950,150 950,200 C 950,250 900,250 900,300 C 900,350 850,350 800,350 L 500,350 C 450,350 450,450 400,450 L 150,450 C 100,450 100,350 100,300 Z" stroke="#333" stroke-width="45" fill="none" />
+                    <path d="M 100,100 C 100,50 300,50 300,50 L 900,50 C 950,50 950,150 950,200 C 950,250 900,250 900,300 C 900,350 850,350 800,350 L 500,350 C 450,350 450,450 400,450 L 150,450 C 100,450 100,350 100,300 Z" stroke="#ff5722" stroke-width="5" stroke-dasharray="10,10" fill="none" />
+                    
+                    <!-- Animasi Kart -->
+                    <g id="car-group">
+                        <circle r="10" fill="white" /> <!-- Pengganti jika gambar kart.png tidak ada -->
+                        <animateMotion dur="8s" repeatCount="indefinite" rotate="auto" path="M 100,100 C 100,50 300,50 300,50 L 900,50 C 950,50 950,150 950,200 C 950,250 900,250 900,300 C 900,350 850,350 800,350 L 500,350 C 450,350 450,450 400,450 L 150,450 C 100,450 100,350 100,300 Z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="track-stats">
+                <div class="stat-box"><div class="stat-value">200 m</div><div class="stat-label">Panjang</div></div>
+                <div class="stat-box"><div class="stat-value">6</div><div class="stat-label">Tikungan</div></div>
+                <div class="stat-box"><div class="stat-value">15.3s</div><div class="stat-label">Lap Record</div></div>
+            </div>
+        </section>
+
+        <!-- LICENSE GENERATOR -->
+        <section class="panel">
+            <h2 class="panel-header">🪪 RACING LICENSE GENERATOR</h2>
+            <div class="license-form">
+                <input type="text" id="driver-name" placeholder="Nama Lengkap">
+                <input type="text" id="driver-nickname" placeholder="Julukan (Contoh: The Flash)">
+                <input type="number" id="driver-number" placeholder="Nomor Start (0-99)">
+                <button id="generate-btn">CETAK LISENSI</button>
+            </div>
+
+            <div id="id-card-wrapper" style="display: none;">
+                <div class="id-card" id="id-card-result">
+                    <div class="id-header">
+                        <div class="header-left"><span class="country">IDN</span> <span>SUPER LICENSE</span></div>
+                        <div class="header-right">FULL THROTTLE</div>
+                    </div>
+                    <div class="id-body">
+                        <div class="id-photo-container">
+                            <div class="id-photo">🏎️</div>
+                            <div class="id-class">PRO CLASS</div>
+                        </div>
+                        <div class="id-details">
+                            <div class="field">
+                                <p class="label">DRIVER NAME</p>
+                                <h3 id="card-name">MAX VERSTAPPEN</h3>
+                            </div>
+                            <div class="field">
+                                <p class="label">RACING ALIAS</p>
+                                <h4 id="card-nickname">"MAD MAX"</h4>
+                            </div>
+                            <div class="id-side">
+                                <div class="id-number" id="card-number">33</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-btn" class="save-btn">📥 DOWNLOAD HD LICENSE</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Go-Kart Racing Hub. Built for Speed.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

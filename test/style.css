@@ -1,0 +1,90 @@
+:root {
+    --primary: #ff5722;
+    --dark: #0a0a0a;
+    --gray: #1a1a1a;
+    --text: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+h1, h2, .orbitron { font-family: 'Orbitron', sans-serif; }
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1547544289-51c4a0346335?auto=format&fit=crop&q=80') center/cover;
+}
+
+.main-title { font-size: 5rem; margin: 0; color: var(--primary); letter-spacing: 5px; }
+
+/* Auth Buttons */
+.auth-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 15px;
+}
+
+.hero-btn {
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-family: 'Orbitron';
+}
+
+.login-btn { background: var(--primary); color: white; }
+.reg-btn { border: 2px solid white; color: white; }
+.hero-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+/* Panels */
+.container { padding: 20px; max-width: 1000px; margin: auto; }
+.panel {
+    background: var(--gray);
+    padding: 40px;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+}
+
+.engine-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.spec-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #333; }
+.orange { color: var(--primary); font-weight: bold; }
+
+/* ID Card Styles */
+.license-form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: 0 auto 30px; }
+.license-form input { padding: 12px; border-radius: 4px; border: none; background: #333; color: white; }
+.license-form button { padding: 15px; background: var(--primary); border: none; color: white; font-weight: bold; cursor: pointer; }
+
+.id-card {
+    width: 450px;
+    height: 250px;
+    background: linear-gradient(135deg, #222, #444);
+    border-radius: 15px;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px;
+    text-align: left;
+    border: 1px solid #555;
+    overflow: hidden;
+}
+
+.id-header { display: flex; justify-content: space-between; border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 15px; }
+.country { background: var(--primary); padding: 2px 5px; font-weight: bold; border-radius: 3px; }
+
+.id-body { display: flex; gap: 20px; }
+.id-photo { width: 100px; height: 120px; background: #111; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.id-number { font-size: 4rem; color: rgba(255,87,34,0.3); font-family: 'Orbitron'; position: absolute; right: 20px; bottom: 10px; }
+
+footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem; }
