@@ -142,7 +142,7 @@ if (!$data) {
                 <a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a>
                 <a href="#" class="nav-link">Hasil Balapan</a>
                 <a href="#" class="nav-link">Leaderboard</a>
-                <a href="../profil/profil.php" class="nav-link">Profil Saya</a>
+                <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a></li>
             </nav>
             <div class="sidebar-bottom">
                 <div class="sidebar-user">

@@ -43,7 +43,7 @@ $paket_query = mysqli_query($koneksi, "SELECT * FROM paket_bermain");
                 <li><a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a></li>
                 <li><a href="#" class="nav-link">Hasil Balapan</a></li>
                 <li><a href="#" class="nav-link">Leaderboard</a></li>
-                <li><a href="../profil/profil.php" class="nav-link">Profil Saya</a></li> 
+                <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a></li>
             </ul>
         </div>
         <div class="sidebar-bottom">
