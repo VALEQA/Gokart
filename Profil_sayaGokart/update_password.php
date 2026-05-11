@@ -1,59 +1,50 @@
 <?php
+session_start();
+require '../koneksi.php'; // Pastikan variabel koneksi kamu $koneksi atau $conn
 
-include '../koneksi.php';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id'];
+    $password_lama = $_POST['password_lama'];
+    $password_baru = $_POST['password_baru'];
+    $konfirmasi_password = $_POST['konfirmasi_password'];
 
-$id = $_POST['id'];
+    // 1. Ambil data user dari database
+    // Gunakan $koneksi atau $conn sesuai yang ada di file koneksi.php kamu
+    $query = mysqli_query($koneksi, "SELECT * FROM users WHERE id='$id'");
+    $data = mysqli_fetch_assoc($query);
 
-$password_lama = $_POST['password_lama'];
+    // 2. CEK PASSWORD LAMA (Menggunakan password_verify)
+    // Karena di DB di-hash, kita tidak bisa pakai !=
+    if (!password_verify($password_lama, $data['password'])) {
+        echo "<script>
+                alert('Password lama salah!');
+                window.location='profil.php';
+              </script>";
+        exit;
+    }
 
-$password_baru = $_POST['password_baru'];
+    // 3. Cek Konfirmasi Password Baru
+    if ($password_baru !== $konfirmasi_password) {
+        echo "<script>
+                alert('Konfirmasi password baru tidak cocok!');
+                window.location='profil.php';
+              </script>";
+        exit;
+    }
 
-$konfirmasi_password = $_POST['konfirmasi_password'];
+    // 4. HASH PASSWORD BARU SEBELUM DISIMPAN
+    $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
 
-// ambil data user
-$query = mysqli_query($conn,
-"SELECT * FROM users WHERE id='$id'");
+    // 5. Update ke Database
+    $update = mysqli_query($koneksi, "UPDATE users SET password='$password_hash' WHERE id='$id'");
 
-$data = mysqli_fetch_assoc($query);
-
-// cek password lama
-if($password_lama != $data['password']){
-
-    echo "
-    <script>
-        alert('Password lama salah!');
-        window.location='profil_saya.php';
-    </script>
-    ";
-
-    exit;
+    if ($update) {
+        echo "<script>
+                alert('Password berhasil diganti!');
+                window.location='profil_saya.php';
+              </script>";
+    } else {
+        echo "Error: " . mysqli_error($koneksi);
+    }
 }
-
-// cek konfirmasi password
-if($password_baru != $konfirmasi_password){
-
-    echo "
-    <script>
-        alert('Konfirmasi password tidak cocok!');
-        window.location='profil_saya.php';
-    </script>
-    ";
-
-    exit;
-}
-
-// update password
-mysqli_query($conn,
-"UPDATE users
-SET password='$password_baru'
-WHERE id='$id'");
-
-// berhasil
-echo "
-<script>
-    alert('Password berhasil diganti!');
-    window.location='profil_saya.php';
-</script>
-";
-
 ?>
