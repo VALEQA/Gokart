@@ -18,7 +18,7 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $where_clause .= " AND (b.id LIKE '%$keyword%' OR u.nama_lengkap LIKE '%$keyword%')";
 }
 
-// 1. Hitung ulang total pendapatan bersih khusus dari data yang difilter/keseluruhan
+// 1. Hitung ulang total pendapatan bersih khusus dari data yang statusnya 'selesai'
 $calc_query = mysqli_query($koneksi, "
     SELECT SUM(b.total_harga) as total_masuk 
     FROM booking b
@@ -28,14 +28,14 @@ $calc_query = mysqli_query($koneksi, "
 $income_data = mysqli_fetch_assoc($calc_query);
 $total_pendapatan_bersih = $income_data['total_masuk'] ?? 0;
 
-// 2. Ambil data semua transaksi yang sudah LUNAS ('selesai')
+// 2. Ambil data semua transaksi yang sudah SELESAI (Lunas) sesuai kolom database racinghub
 $riwayat_query = mysqli_query($koneksi, "
     SELECT b.*, u.nama_lengkap, u.email, p.nama_paket 
     FROM booking b
     INNER JOIN users u ON b.user_id = u.id
     INNER JOIN paket_bermain p ON b.paket_id = p.id
     $where_clause
-    ORDER BY b.updated_at DESC
+    ORDER BY b.created_at DESC
 ");
 ?>
 
@@ -47,7 +47,6 @@ $riwayat_query = mysqli_query($koneksi, "
     <title>GoKart Admin - Riwayat Keuangan</title>
     <link rel="stylesheet" href="style-admin.css">
     <style>
-        /* Style Tambahan untuk Komponen Pencarian & Ringkasan */
         .search-box {
             display: flex;
             gap: 10px;
@@ -97,8 +96,8 @@ $riwayat_query = mysqli_query($koneksi, "
         }
         .revenue-banner h2 { font-size: 2rem; color: #ffd700; margin-top: 0.2rem; }
         .success-badge {
-            background-color: var(--success-light);
-            color: var(--success);
+            background-color: #d1fae5;
+            color: #065f46;
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
             font-size: 0.8rem;
@@ -117,7 +116,10 @@ $riwayat_query = mysqli_query($koneksi, "
                 <ul class="nav-menu">
                     <li><a href="dashboard.php" class="nav-link"><span>Dashboard</span></a></li>
                     <li><a href="riwayat_keuangan.php" class="nav-link active"><span>Riwayat Keuangan</span></a></li>
+                    <li><a href="input_waktu.php" class="nav-link"><span>Input Waktu Balap</span></a></li>
                     <li><a href="leaderboard.php" class="nav-link"><span>Lihat Leaderboard</span></a></li>
+                    <li><a href="kelola_paket.php" class="nav-link"><span>Kelola Paket</span></a></li>
+                    <li><a href="kelola_users.php" class="nav-link"><span>Kelola Users</span></a></li>
                 </ul>
             </div>
             <div class="sidebar-bottom">
@@ -160,7 +162,7 @@ $riwayat_query = mysqli_query($koneksi, "
                             <th>ID Transaksi</th>
                             <th>Nama Racer</th>
                             <th>Paket Bermain</th>
-                            <th>Tanggal Lunas</th>
+                            <th>Tanggal & Sesi Jadwal</th>
                             <th>Status</th>
                             <th style="text-align: right;">Nominal Uang</th>
                         </tr>
@@ -178,12 +180,15 @@ $riwayat_query = mysqli_query($koneksi, "
                                 <td><strong>#BK-<?= $row['id']; ?></strong></td>
                                 <td>
                                     <strong><?= htmlspecialchars($row['nama_lengkap']); ?></strong><br>
-                                    <small style="color: var(--gray);"><?= htmlspecialchars($row['email']); ?></small>
+                                    <small style="color: #64748b;"><?= htmlspecialchars($row['email']); ?></small>
                                 </td>
-                                <td><span class="badge-paket"><?= htmlspecialchars($row['nama_paket']); ?></span></td>
-                                <td><?= date('d M Y, H:i', strtotime($row['updated_at'])); ?> WIB</td>
+                                <td><span class="badge-paket" style="background-color: #f1f5f9; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: 600;"><?= htmlspecialchars($row['nama_paket']); ?></span></td>
+                                <td>
+                                    <?= date('d M Y', strtotime($row['tanggal_booking'])); ?><br>
+                                    <small style="color: #64748b;">Jam: <?= date('H:i', strtotime($row['jam_booking'])); ?> WIB</small>
+                                </td>
                                 <td><span class="success-badge">LUNAS</span></td>
-                                <td style="text-align: right; font-weight: bold; color: var(--success); font-size: 1.05rem;">
+                                <td style="text-align: right; font-weight: bold; color: #10b981; font-size: 1.05rem;">
                                     + Rp <?= number_format($row['total_harga'], 0, ',', '.'); ?>
                                 </td>
                             </tr>

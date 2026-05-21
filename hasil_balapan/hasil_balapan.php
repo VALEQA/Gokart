@@ -73,7 +73,7 @@ $chart_data = array_reverse($chart_data);
                     <li><a href="../hasil_balapan/hasil_balapan.php" class="nav-link active"><span>Hasil Balapan</span></a></li>
                     <li><a href="../leaderboard/leaderboard.php" class="nav-link"><span>Leaderboard</span></a></li>
                     <li><a href="../pembayaran/pembayaran.php" class="nav-link"><span>Pembayaran</span></a></li>
-                    <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link"><span>Profil Saya</span></a></li>
+                    <li><a href="../Profil/profil.php" class="nav-link"><span>Profil Saya</span></a></li>
                 </ul>
             </div>
 

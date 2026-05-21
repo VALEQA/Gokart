@@ -44,7 +44,7 @@ $paket_query = mysqli_query($koneksi, "SELECT * FROM paket_bermain");
                 <li><a href="../hasil_balapan/hasil_balapan.php" class="nav-link">Hasil Balapan</a></li>
                 <li><a href="../leaderboard/leaderboard.php" class="nav-link">Leaderboard</a></li>
                 <li><a href="../pembayaran/pembayaran.php" class="nav-link">Pembayaran</a></li>
-                <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a></li>
+                <li><a href="../Profil/profil.php" class="nav-link">Profil Saya</a></li>
             </ul>
         </div>
         <div class="sidebar-bottom">

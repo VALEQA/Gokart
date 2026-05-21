@@ -1,0 +1,265 @@
+:root {
+  --primary: #e63946;
+  --primary-light: #ffe5e5;
+  --dark: #1d3557;
+  --light: #f1faee;
+  --gray: #6c757d;
+  --white: #ffffff;
+  --bg-body: #f8f9fa;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   SIDEBAR STYLES (Konsisten dengan modul lain)
+   ========================================================================== */
+.sidebar {
+  width: 260px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid #eee;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.brand h2 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.brand p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.nav-menu {
+  list-style: none;
+  margin-top: 2rem;
+  flex-grow: 1;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--gray);
+  display: block;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.sidebar-bottom {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.sidebar-user {
+  padding: 1rem;
+  background: var(--bg-body);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.sidebar-user p {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user small {
+  color: var(--gray);
+  display: block;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   MAIN CONTENT & CARDS
+   ========================================================================== */
+.main {
+  margin-left: 260px;
+  padding: 2.5rem 3.5rem;
+  width: calc(100% - 260px);
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* ==========================================================================
+   KONTEN KHUSUS FORM PROFIL
+   ========================================================================== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--dark);
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  background-color: var(--white);
+  transition: var(--transition);
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Gaya khusus input email/ID yang dikunci */
+.input-disabled {
+  background-color: #e9ecef;
+  color: var(--gray);
+  border-color: #dee2e6;
+  cursor: not-allowed;
+}
+
+.save-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.save-btn:hover {
+  background-color: #c92a36;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
+}
+
+/* ALERT / NOTIFIKASI */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Layar HP & Tablet)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .main {
+    padding: 2rem;
+  }
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+    padding: 2rem 0.5rem;
+  }
+  .brand h2,
+  .brand p,
+  .nav-link span,
+  .sidebar-user,
+  .logout-btn span {
+    display: none;
+  }
+  .main {
+    margin-left: 80px;
+    padding: 1.5rem;
+    width: calc(100% - 80px);
+  }
+}

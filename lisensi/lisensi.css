@@ -1,0 +1,114 @@
+:root {
+  --primary: #ef4444;
+  --primary-light: #ffe5e5;
+  --dark: #1d3557;
+  --gray: #6c757d;
+  --white: #ffffff;
+  --bg-body: #090d16;
+}
+
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body { background-color: var(--bg-body); color: #fff; }
+.container { display: flex; min-height: 100vh; }
+
+/* SIDEBAR LAYOUT (SINKRON DENGAN DASHBOARD) */
+.sidebar {
+  width: 260px; background-color: #0b0f19; display: flex;
+  flex-direction: column; justify-content: space-between;
+  padding: 2rem 1.5rem; border-right: 1px solid #1f2937;
+  position: fixed; height: 100vh; z-index: 100;
+}
+.brand h2 { color: var(--primary); font-size: 1.5rem; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+.brand p { font-size: 0.8rem; color: var(--gray); }
+.nav-menu { list-style: none; margin-top: 2rem; flex-grow: 1; }
+.nav-link { text-decoration: none; color: #9ca3af; display: block; padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 0.5rem; }
+.nav-link:hover { background-color: #111827; color: #fff; }
+.sidebar-bottom { border-top: 1px solid #1f2937; padding-top: 1.5rem; }
+.sidebar-user { padding: 1rem; background: #111827; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #1f2937; }
+.logout-btn { width: 100%; padding: 0.8rem; border: 1px solid #374151; background: none; color:#fff; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.logout-btn:hover { background: var(--primary); border-color: var(--primary); }
+
+/* MAIN CONTENT BLOCK */
+.main { margin-left: 260px; padding: 2.5rem 3.5rem; width: calc(100% - 260px); }
+.header { margin-bottom: 2rem; }
+.header h1 { font-size: 2.2rem; font-family: 'Orbitron', sans-serif; }
+.header p { color: var(--gray); }
+
+/* STYLING PANEL & FORM INPUT */
+.panel { background-color: #0b0f19; padding: 3rem 2rem; border-radius: 12px; border: 1px solid #1f2937; }
+.panel-header { font-family: 'Orbitron', sans-serif; color: #fff; text-align: center; font-size: 1.8rem; margin-bottom: 0.5rem; }
+.panel-desc { text-align: center; color: #9ca3af; margin-bottom: 2rem; }
+
+.license-form { max-width: 500px; margin: 0 auto 2rem auto; display: flex; flex-direction: column; gap: 1rem; }
+.license-form input { padding: 0.8rem; background: #111827; border: 1px solid #374151; color: #fff; border-radius: 6px; outline: none; font-size: 0.95rem; }
+.license-form input:focus { border-color: var(--primary); }
+
+.file-label { padding: 0.8rem; background: #1f2937; border: 1px dashed #4b5563; color: #d1d5db; border-radius: 6px; text-align: center; cursor: pointer; transition: 0.2s; }
+.file-label:hover { background: #374151; }
+#driver-photo { display: none; }
+
+#generate-btn { padding: 1rem; background: var(--primary); color: #fff; border: none; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-weight: bold; cursor: pointer; transition: 0.2s; }
+#generate-btn:hover { background: #dc2626; transform: translateY(-1px); }
+
+/* ==========================================================================
+   STYLING ELEMEN KARTU LISENSI (ID CARD STYLE)
+   ========================================================================== */
+.id-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 2px solid #38bdf8; border-radius: 14px; padding: 1rem;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15); overflow: hidden;
+}
+
+/* Garis hologram berkilau */
+.id-hologram {
+  position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: skewX(-25deg); pointer-events: none; animation: shine 6s infinite linear;
+}
+@keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+
+.id-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ef4444; padding-bottom: 0.4rem; margin-bottom: 0.8rem; }
+.header-left .country { background: #ef4444; color: #fff; padding: 0.1rem 0.4rem; font-weight: 900; font-size: 0.75rem; border-radius: 3px; font-family: 'Orbitron', sans-serif; margin-right: 0.5rem; }
+.header-left .title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.85rem; color: #fff; letter-spacing: 0.5px; }
+.header-right { font-family: 'Orbitron', sans-serif; font-size: 0.65rem; color: #38bdf8; font-weight: bold; }
+
+.id-body { display: flex; gap: 1rem; align-items: flex-start; height: 185px; }
+
+/* Wadah Foto Profil */
+.id-photo-container { display: flex; flex-direction: column; align-items: center; width: 110px; }
+.id-photo { width: 110px; height: 140px; background: #0f172a; border: 1px solid #374151; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 3rem; overflow: hidden; }
+.id-photo img { width: 100%; height: 100%; object-fit: cover; }
+.id-class { background: #38bdf8; color: #000; width: 100%; text-align: center; font-size: 0.65rem; font-weight: 900; padding: 0.2rem 0; border-radius: 4px; margin-top: 0.5rem; font-family: 'Orbitron', sans-serif; }
+
+/* Detail Informasi */
+.id-details { flex-grow: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+.detail-row { display: flex; gap: 1.5rem; }
+.field .label { font-size: 0.55rem; color: #64748b; font-weight: bold; margin: 0; }
+.field h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: #fff; font-weight: 900; margin-top: -2px; }
+.field h4 { font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #38bdf8; margin: 0; }
+.field .alias { color: #f59e0b; font-style: italic; font-weight: bold; }
+
+.signature-box { border-top: 1px dashed #334155; padding-top: 0.3rem; margin-top: 0.2rem; }
+.signature { font-family: 'Courier New', Courier, cursive; font-size: 1rem; color: #cbd5e1; font-style: italic; margin-top: 2px; }
+
+/* Sisi Chip Kanan */
+.id-side { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; height: 100%; width: 60px; }
+.id-chip { width: 38px; height: 28px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 4px; border: 1px solid #b45309; position: relative; }
+.id-chip::after { content: ''; position: absolute; top: 4px; left: 8px; width: 20px; height: 18px; border: 1px solid rgba(0,0,0,0.15); border-radius: 2px; }
+.id-number { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: 5px; }
+
+/* Bagian Bawah Kartu */
+.id-footer { display: flex; justify-content: space-between; align-items: center; position: absolute; bottom: 12px; left: 1rem; right: 1rem; }
+.id-barcode { width: 140px; height: 25px; background: linear-gradient(90deg, #fff 2px, transparent 2px, #fff 4px, transparent 4px, #fff 5px, transparent 7px, #fff 7px, transparent 10px, #fff 12px, transparent 12px, #fff 15px); background-size: 18px 100%; opacity: 0.5; }
+.id-legal { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: #64748b; text-align: right; line-height: 1.2; }
+
+/* BUTTON DOWNLOAD */
+.save-btn { padding: 1rem 2rem; background: #10b981; color: #fff; border: none; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.save-btn:hover { background: #059669; }
+
+/* MEDIA RESPONSIVE */
+@media (max-width: 992px) { .main { margin-left: 0; width: 100%; padding: 2rem; } .sidebar { display: none; } }

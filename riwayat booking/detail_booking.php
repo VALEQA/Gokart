@@ -135,7 +135,7 @@ if (!$data) {
                 <a href="../hasil_balapan/hasil_balapan.php" class="nav-link">Hasil Balapan</a>
                 <a href="../leaderboard/leaderboard.php" class="nav-link">Leaderboard</a>
                 <a href="../pembayaran/pembayaran.php" class="nav-link">Pembayaran</a>
-                <a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a>
+                <a href="../Profil/profil.php" class="nav-link">Profil Saya</a>
             </nav>
             <div class="sidebar-bottom">
                 <div class="sidebar-user">

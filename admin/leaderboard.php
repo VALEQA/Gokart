@@ -9,26 +9,17 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
 
 require '../koneksi.php';
 
-// Navigasi Sektor
-$view = isset($_GET['view']) ? $_GET['view'] : 'total_lap';
-$allowed_views = ['total_lap', 'sektor_1', 'sektor_2', 'sektor_3'];
-if (!in_array($view, $allowed_views)) { $view = 'total_lap'; }
-
-$sector_titles = [
-    'total_lap' => 'Overall Lap',
-    'sektor_1'  => 'Sektor 1',
-    'sektor_2'  => 'Sektor 2',
-    'sektor_3'  => 'Sektor 3'
-];
-
-// Query data catatan waktu terbaik
-$query_text = "SELECT u.nama_lengkap, u.email, MIN(h.$view) as waktu_terbaik 
-               FROM hasil_balapan h
-               INNER JOIN users u ON h.user_id = u.id
-               WHERE h.$view < 99.999
-               GROUP BY h.user_id
-               ORDER BY waktu_terbaik ASC";
-$leaderboard_query = mysqli_query($koneksi, $query_text);
+// AMBIL DATA REKOR TERCEPAT (Mengurutkan Lap Time dari yang paling kecil/cepat)
+// Mengabaikan nilai default 99.999 (artinya belum balapan atau belum di-input admin)
+$leaderboard_query = mysqli_query($koneksi, "
+    SELECT h.*, u.nama_lengkap, p.nama_paket, b.tanggal_booking 
+    FROM hasil_balapan h
+    INNER JOIN users u ON h.user_id = u.id
+    INNER JOIN booking b ON h.booking_id = b.id
+    INNER JOIN paket_bermain p ON b.paket_id = p.id
+    WHERE h.total_lap < 99.999
+    ORDER BY h.total_lap ASC
+");
 ?>
 
 <!DOCTYPE html>
@@ -39,16 +30,22 @@ $leaderboard_query = mysqli_query($koneksi, $query_text);
     <title>GoKart Admin - Leaderboard</title>
     <link rel="stylesheet" href="style-admin.css">
     <style>
-        .leaderboard-tabs { display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .tab-btn { padding: 0.6rem 1.5rem; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.9rem; background-color: var(--white); color: var(--gray); border: 1px solid #e2e8f0; transition: var(--transition); }
-        .tab-btn:hover { background-color: #f1f5f9; color: var(--dark); }
-        .tab-btn.active { background-color: var(--primary); color: var(--white); border-color: var(--primary); }
-        .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 35px; height: 35px; border-radius: 50%; font-weight: 800; font-size: 0.95rem; }
-        .rank-1 { background-color: #ffd700; color: #6e5500; }
-        .rank-2 { background-color: #e2e8f0; color: #4a5568; }
-        .rank-3 { background-color: #edd1b6; color: #7c4a1b; }
-        .rank-badge:not(.rank-1):not(.rank-2):not(.rank-3) { background-color: var(--bg-body); color: var(--gray); }
-        .time-highlight { font-weight: 800; font-size: 1.2rem; color: var(--primary); }
+        /* Desain khusus panggung podium */
+        .podium-badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .pos-1 { background-color: #ffd700; color: #000; } /* Emas */
+        .pos-2 { background-color: #c0c0c0; color: #000; } /* Perak */
+        .pos-3 { background-color: #cd7f32; color: #fff; } /* Perunggu */
+        .pos-regular { background-color: #f1f5f9; color: #334155; }
+        
+        .highlight-row { font-weight: 600; }
+        .time-highlight { font-family: 'Courier New', Courier, monospace; font-size: 1.1rem; color: #e63946; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -61,13 +58,17 @@ $leaderboard_query = mysqli_query($koneksi, $query_text);
                 </div>
                 <ul class="nav-menu">
                     <li><a href="dashboard.php" class="nav-link"><span>Dashboard</span></a></li>
+                    <li><a href="riwayat_keuangan.php" class="nav-link"><span>Riwayat Keuangan</span></a></li>
+                    <li><a href="input_waktu.php" class="nav-link"><span>Input Waktu Balap</span></a></li>
                     <li><a href="leaderboard.php" class="nav-link active"><span>Lihat Leaderboard</span></a></li>
+                    <li><a href="kelola_paket.php" class="nav-link"><span>Kelola Paket</span></a></li>
+                    <li><a href="kelola_users.php" class="nav-link"><span>Kelola Users</span></a></li>
                 </ul>
             </div>
             <div class="sidebar-bottom">
                 <div class="sidebar-user">
                     <p><strong>Admin Panel</strong></p>
-                    <small>Administrator Sirkuit</small>
+                    <small>Race Director</small>
                 </div>
                 <button class="logout-btn" onclick="if(confirm('Keluar dari panel admin?')) window.location.href='../logout.php'">
                     <span>Logout</span>
@@ -77,47 +78,66 @@ $leaderboard_query = mysqli_query($koneksi, $query_text);
 
         <main class="main">
             <header class="header">
-                <h1>Sirkuit Leaderboard (Admin View)</h1>
-                <p>Pantauan rekapan waktu terbaik seluruh pembalap</p>
+                <h1>Sirkuit Leaderboard</h1>
+                <p>Peringkat urutan pembalap tercepat berdasarkan akumulasi waktu 3 sektor sirkuit</p>
             </header>
 
-            <div class="leaderboard-tabs">
-                <?php foreach ($sector_titles as $key => $title): ?>
-                    <a href="leaderboard.php?view=<?= $key; ?>" class="tab-btn <?= $view === $key ? 'active' : ''; ?>">
-                        <?= $title; ?>
-                    </a>
-                <?php endforeach; ?>
-            </div>
-
             <section class="card table-container">
+                <h3 style="border-left: 4px solid #ffd700; padding-left: 10px; margin-bottom: 1.5rem;">👑 Top Speed Records</h3>
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th style="width: 100px; text-align: center;">Posisi</th>
+                            <th style="text-align: center; width: 80px;">Posisi</th>
                             <th>Nama Pembalap</th>
-                            <th>Email</th>
-                            <th style="text-align: right;">Waktu Terbaik (<?= $sector_titles[$view]; ?>)</th>
+                            <th>Paket Sesi</th>
+                            <th style="text-align: center;">Sektor 1</th>
+                            <th style="text-align: center;">Sektor 2</th>
+                            <th style="text-align: center;">Sektor 3</th>
+                            <th style="text-align: right; padding-right: 2rem;">Best Lap Time</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
                         $no = 1;
-                        while($row = mysqli_fetch_assoc($leaderboard_query)): 
+                        if (mysqli_num_rows($leaderboard_query) == 0): 
                         ?>
                         <tr>
-                            <td style="text-align: center;">
-                                <span class="rank-badge rank-<?= $no; ?>"><?= $no; ?></span>
-                            </td>
-                            <td><strong><?= htmlspecialchars($row['nama_lengkap']); ?></strong></td>
-                            <td><?= htmlspecialchars($row['email']); ?></td>
-                            <td class="time-highlight" style="text-align: right;">
-                                <?= number_format($row['waktu_terbaik'], 3); ?> <span style="font-size: 0.8rem; font-weight: normal; color: var(--gray);">detik</span>
+                            <td colspan="7" style="text-align: center; color: var(--gray); padding: 3rem; font-style: italic;">
+                                Belum ada catatan waktu balap yang memenuhi kualifikasi rekor sirkuit.
                             </td>
                         </tr>
-                        <?php 
-                        $no++;
-                        endwhile; 
-                        ?>
+                        <?php else: ?>
+                            <?php while ($row = mysqli_fetch_assoc($leaderboard_query)): 
+                                // Menentukan style badge berdasarkan nomor urutan peringkat
+                                if ($no == 1) { $badge_class = "pos-1"; $badge_text = "🥇 1st"; }
+                                elseif ($no == 2) { $badge_class = "pos-2"; $badge_text = "🥈 2nd"; }
+                                elseif ($no == 3) { $badge_class = "pos-3"; $badge_text = "🥉 3rd"; }
+                                else { $badge_class = "pos-regular"; $badge_text = $no . "th"; }
+                            ?>
+                            <tr class="<?= $no <= 3 ? 'highlight-row' : ''; ?>">
+                                <td style="text-align: center;">
+                                    <span class="podium-badge <?= $badge_class; ?>"><?= $badge_text; ?></span>
+                                </td>
+                                <td>
+                                    <strong><?= htmlspecialchars($row['nama_lengkap']); ?></strong><br>
+                                    <small style="color: var(--gray);">ID Booking: #BK-<?= $row['booking_id']; ?></small>
+                                </td>
+                                <td>
+                                    <span><?= htmlspecialchars($row['nama_paket']); ?></span><br>
+                                    <small><?= date('d M Y', strtotime($row['tanggal_booking'])); ?></small>
+                                </td>
+                                <td style="text-align: center; color: var(--gray);"><?= number_format($row['sektor_1'], 3); ?>s</td>
+                                <td style="text-align: center; color: var(--gray);"><?= number_format($row['sektor_2'], 3); ?>s</td>
+                                <td style="text-align: center; color: var(--gray);"><?= number_format($row['sektor_3'], 3); ?>s</td>
+                                <td style="text-align: right; padding-right: 2rem;" class="time-highlight">
+                                    <?= number_format($row['total_lap'], 3); ?> s
+                                </td>
+                            </tr>
+                            <?php 
+                            $no++;
+                            endwhile; 
+                            ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </section>

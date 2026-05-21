@@ -74,6 +74,26 @@ $next_query = mysqli_query($koneksi, "
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoKart Racing - Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mengubah container aksi cepat agar otomatis muat 4 kolom sebaris di PC */
+        .aksi-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Responsif untuk layar tablet dan HP agar tidak sempit */
+        @media (max-width: 1200px) {
+            .aksi-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 576px) {
+            .aksi-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -84,7 +104,6 @@ $next_query = mysqli_query($koneksi, "
                 <h2>GoKart Racing</h2>
                 <p>Booking System</p>
             </div>
-
             <ul class="nav-menu">
                 <li><a href="../dashboard/dashboard.php" class="nav-link active">Dashboard</a></li>
                 <li><a href="../booking/booking.php" class="nav-link">Booking</a></li>
@@ -92,7 +111,7 @@ $next_query = mysqli_query($koneksi, "
                 <li><a href="../hasil_balapan/hasil_balapan.php" class="nav-link">Hasil Balapan</a></li>
                 <li><a href="../leaderboard/leaderboard.php" class="nav-link">Leaderboard</a></li>
                 <li><a href="../pembayaran/pembayaran.php" class="nav-link">Pembayaran</a></li>
-                <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a></li>
+                <li><a href="../Profil/profil.php" class="nav-link">Profil Saya</a></li>
             </ul>       
         </div>
 
@@ -101,7 +120,7 @@ $next_query = mysqli_query($koneksi, "
                 <p><strong><?= htmlspecialchars($user['nama_lengkap']); ?></strong></p>
                 <small><?= htmlspecialchars($user['email']); ?></small>
             </div>
-            <button class="logout-btn">Logout</button>
+            <button class="logout-btn" onclick="if(confirm('Keluar dari sistem?')) window.location.href='../logout.php'">Logout</button>
         </div>
     </aside>
 
@@ -172,8 +191,19 @@ $next_query = mysqli_query($koneksi, "
                     <h3>Lihat Leaderboard</h3>
                     <p>Cek ranking pemain terbaik</p>
                 </div>
+
+                <div class="card aksi-box clickable" onclick="window.location.href='../Profil/profil.php'">
+                    <h3>Profil Saya</h3>
+                    <p>Kelola data diri dan keamanan sandi</p>
+                </div>
+
+                <div class="card aksi-box clickable" onclick="window.location.href='../lisensi/lisensi.php'">
+                    <h3>Lisensi Pembalap</h3>
+                    <p>Lihat status nomor lisensi balap Anda</p>
+                </div>
             </div>
         </section>
+
     </main>
 </div>
 

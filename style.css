@@ -1,481 +1,552 @@
 :root {
-    --bg-color: #121212;
-    --panel-bg: #1e1e1e;
-    --text-color-light: #f5f5f5;
-    --text-color-muted: #b0b0b0;
-    --accent-orange: #ff5722;
-    --accent-red: #d32f2f;
-    --border-color: #333333;
-    --grid-line-color: #2a2a2a;
-    --green: #00ff08;
-    --yellow: #f8df06;
-    --blue: #2196f3;
-    --white: #ffffff;
-    --black: #000000;
+  --bg-color: #121212;
+  --panel-bg: #1e1e1e;
+  --text-color-light: #f5f5f5;
+  --text-color-muted: #b0b0b0;
+  --accent-orange: #ff5722;
+  --accent-red: #d32f2f;
+  --border-color: #333333;
+  --grid-line-color: #2a2a2a;
+  --green: #00ff08;
+  --yellow: #f8df06;
+  --blue: #2196f3;
+  --white: #ffffff;
+  --black: #000000;
 }
 
 .hero-login-btn {
-    display: block; /* Ubah ke block agar bisa pakai margin auto */
-    width: fit-content; /* Lebar tombol menyesuaikan panjang teks */
-    margin: 30px auto 40px auto; /* KUNCI RAHASIANYA: 'auto' akan memaksa tombol tepat ke tengah! */
-    padding: 16px 40px;
-    background: linear-gradient(90deg, #d32f2f 0%, #ff5722 100%);
-    color: #000;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 50px;
-    border: none;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 15px rgba(255, 87, 34, 0.4);
-    animation: pulse-glow 2s infinite;
+  display: block; /* Ubah ke block agar bisa pakai margin auto */
+  width: fit-content; /* Lebar tombol menyesuaikan panjang teks */
+  margin: 30px auto 40px auto; /* KUNCI RAHASIANYA: 'auto' akan memaksa tombol tepat ke tengah! */
+  padding: 16px 40px;
+  background: linear-gradient(90deg, #d32f2f 0%, #ff5722 100%);
+  color: #000;
+  text-decoration: none;
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  border: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.4);
+  animation: pulse-glow 2s infinite;
 }
 
 .hero-login-btn:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 0 30px rgba(255, 87, 34, 0.8);
-    color: #fff;
-    background: #ff5722;
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 0 30px rgba(255, 87, 34, 0.8);
+  color: #fff;
+  background: #ff5722;
 }
 
 /* Pastikan animasi ini juga ada di bawahnya */
 @keyframes pulse-glow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(255, 87, 34, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 87, 34, 0);
-    }
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 87, 34, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 87, 34, 0);
+  }
 }
 
 .hero-login-btn:hover {
-    background-color: #ff5722;
-    color: #000;
-    box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
-    transform: translateY(-3px); /* Efek melayang saat disentuh mouse */
+  background-color: #ff5722;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
+  transform: translateY(-3px); /* Efek melayang saat disentuh mouse */
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color-light);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color-light);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 
 .container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Orbitron", sans-serif;
+  margin: 0;
+  font-weight: 700;
 }
 
 .hero {
-    padding: 40px 0;
+  padding: 40px 0;
 }
 
 .main-subtitle {
-    font-size: clamp(12px, 3vw, 16px);
-    color: var(--text-color-muted);
-    text-align: center;
-    font-family: 'Orbitron', sans-serif;
-    margin-top: 20px;
-    letter-spacing: 1px;
+  font-size: clamp(12px, 3vw, 16px);
+  color: var(--text-color-muted);
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  margin-top: 20px;
+  letter-spacing: 1px;
 }
 
 /* --- PERBAIKAN JUDUL DI SINI --- */
 .main-title {
-    font-size: clamp(40px, 8vw, 80px); /* Responsif scaling ukuran font */
-    text-align: center;
-    background: linear-gradient(90deg, var(--accent-red) 0%, var(--accent-orange) 100%);
-    -webkit-background-clip: text; /* Versi WebKit (Safari/Chrome lama) */
-    background-clip: text;         /* Versi Standar CSS (Diperlukan untuk kompatibilitas linter) */
-    -webkit-text-fill-color: transparent;
-    margin-top: 10px;
-    letter-spacing: 2px;
+  font-size: clamp(40px, 8vw, 80px); /* Responsif scaling ukuran font */
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    var(--accent-red) 0%,
+    var(--accent-orange) 100%
+  );
+  -webkit-background-clip: text; /* Versi WebKit (Safari/Chrome lama) */
+  background-clip: text; /* Versi Standar CSS (Diperlukan untuk kompatibilitas linter) */
+  -webkit-text-fill-color: transparent;
+  margin-top: 10px;
+  letter-spacing: 2px;
 }
 /* --- --- --- */
 
 .hero-desc {
-    font-size: clamp(14px, 4vw, 18px);
-    color: var(--text-color-muted);
-    text-align: center;
-    max-width: 800px;
-    margin: 20px auto 40px auto;
-    line-height: 1.6;
+  font-size: clamp(14px, 4vw, 18px);
+  color: var(--text-color-muted);
+  text-align: center;
+  max-width: 800px;
+  margin: 20px auto 40px auto;
+  line-height: 1.6;
 }
 
 .scroll-down {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    cursor: pointer;
-    color: var(--accent-orange);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  cursor: pointer;
+  color: var(--accent-orange);
 }
 
 .scroll-down:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .panel {
-    background-color: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: clamp(15px, 5vw, 30px);
-    margin-bottom: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: clamp(15px, 5vw, 30px);
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .panel-header {
-    color: var(--accent-orange);
-    margin-bottom: 10px;
-    font-size: clamp(24px, 5vw, 32px);
+  color: var(--accent-orange);
+  margin-bottom: 10px;
+  font-size: clamp(24px, 5vw, 32px);
 }
 
 .panel-desc {
-    color: var(--text-color-muted);
-    margin-bottom: 30px;
-    font-size: clamp(14px, 3vw, 16px);
+  color: var(--text-color-muted);
+  margin-bottom: 30px;
+  font-size: clamp(14px, 3vw, 16px);
 }
 
 /* Engine Specs */
 .engine-specs {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
 }
 
 .spec-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    border-bottom: 1px solid var(--border-color);
-    padding: 10px 0;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0;
+  gap: 10px;
 }
 
 .spec-label {
-    color: var(--text-color-muted);
-    font-size: clamp(12px, 3vw, 14px);
+  color: var(--text-color-muted);
+  font-size: clamp(12px, 3vw, 14px);
 }
 
 .spec-value {
-    color: var(--text-color-light);
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(12px, 3vw, 16px);
-    text-align: right;
+  color: var(--text-color-light);
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(12px, 3vw, 16px);
+  text-align: right;
 }
 
-.spec-value.orange { color: var(--accent-orange); }
+.spec-value.orange {
+  color: var(--accent-orange);
+}
 
 .curve-title {
-    color: var(--text-color-light);
-    font-size: clamp(16px, 4vw, 20px);
-    margin-top: 40px;
-    margin-bottom: 20px;
+  color: var(--text-color-light);
+  font-size: clamp(16px, 4vw, 20px);
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .power-curve-placeholder {
-    height: 200px;
-    border: 1px solid var(--grid-line-color);
-    margin-top: 20px;
-    position: relative;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    color: var(--text-color-muted);
+  height: 200px;
+  border: 1px solid var(--grid-line-color);
+  margin-top: 20px;
+  position: relative;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  color: var(--text-color-muted);
 }
 
-.pcp-rpm { position: absolute; bottom: -20px; text-align: center; width: 60px;}
-.pcp-rpm.r1 { left: 0; }
-.pcp-rpm.r2 { left: 50%; transform: translateX(-50%); }
-.pcp-rpm.r3 { right: 0; }
+.pcp-rpm {
+  position: absolute;
+  bottom: -20px;
+  text-align: center;
+  width: 60px;
+}
+.pcp-rpm.r1 {
+  left: 0;
+}
+.pcp-rpm.r2 {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pcp-rpm.r3 {
+  right: 0;
+}
 
 /* Race Track Map */
 .race-track-map {
-    width: 100%;
-    aspect-ratio: 2 / 1; /* Responsif proporsional */
-    background-color: var(--panel-bg);
-    position: relative;
-    border-radius: 8px;
-    margin-bottom: 20px;
+  width: 100%;
+  aspect-ratio: 2 / 1; /* Responsif proporsional */
+  background-color: var(--panel-bg);
+  position: relative;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 #track-svg {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .turn-label {
-    position: absolute;
-    background-color: var(--accent-red);
-    color: var(--white);
-    border-radius: 50%;
-    width: clamp(16px, 3vw, 24px);
-    height: clamp(16px, 3vw, 24px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(8px, 2vw, 12px);
-    font-weight: bold;
-    transform: translate(-50%, -50%); /* Center positioning */
+  position: absolute;
+  background-color: var(--accent-red);
+  color: var(--white);
+  border-radius: 50%;
+  width: clamp(16px, 3vw, 24px);
+  height: clamp(16px, 3vw, 24px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(8px, 2vw, 12px);
+  font-weight: bold;
+  transform: translate(-50%, -50%); /* Center positioning */
 }
 
 .start-finish-label {
-    position: absolute;
-    color: var(--white);
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(8px, 2vw, 12px);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: absolute;
+  color: var(--white);
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(8px, 2vw, 12px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .start-line {
-    background-color: var(--white); 
-    height: clamp(30px, 8vw, 50px); 
-    width: 3px;
-    margin-top: 5px;
+  background-color: var(--white);
+  height: clamp(30px, 8vw, 50px);
+  width: 3px;
+  margin-top: 5px;
 }
 
 .track-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 .stat-box {
-    background-color: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: clamp(10px, 3vw, 20px);
-    text-align: center;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: clamp(10px, 3vw, 20px);
+  text-align: center;
 }
 
 .stat-value {
-    color: var(--accent-orange);
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(18px, 5vw, 32px);
-    margin-bottom: 5px;
+  color: var(--accent-orange);
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(18px, 5vw, 32px);
+  margin-bottom: 5px;
 }
 
 .stat-label {
-    color: var(--text-color-muted);
-    font-size: clamp(10px, 3vw, 14px);
+  color: var(--text-color-muted);
+  font-size: clamp(10px, 3vw, 14px);
 }
 
 /* Lap Records */
 .lap-record-label {
-    color: var(--text-color-muted); 
-    font-family: 'Orbitron', sans-serif; 
-    font-size: 12px; 
-    text-align: center; 
-    text-transform: uppercase;
+  color: var(--text-color-muted);
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .lap-record {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--white);
-    font-size: clamp(48px, 10vw, 72px);
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  font-family: "Orbitron", sans-serif;
+  color: var(--white);
+  font-size: clamp(48px, 10vw, 72px);
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
-.lap-record span.red { color: var(--accent-red); }
+.lap-record span.red {
+  color: var(--accent-red);
+}
 
 .lap-record-sub {
-    color: var(--text-color-muted); 
-    text-align: center; 
-    margin-bottom: 15px;
+  color: var(--text-color-muted);
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .record-driver-info {
-    color: var(--accent-orange);
-    text-align: center;
-    font-size: clamp(12px, 3vw, 14px);
-    margin-bottom: 30px;
+  color: var(--accent-orange);
+  text-align: center;
+  font-size: clamp(12px, 3vw, 14px);
+  margin-bottom: 30px;
 }
 
 .sector-box {
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: clamp(5px, 2vw, 15px); /* Sedikit dikurangi agar lebih lega */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 0; /* KUNCI PERBAIKAN: Mencegah box memaksakan diri melebar */
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: clamp(5px, 2vw, 15px); /* Sedikit dikurangi agar lebih lega */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0; /* KUNCI PERBAIKAN: Mencegah box memaksakan diri melebar */
 }
 
 .sector-time {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(12px, 3.5vw, 20px); /* Ukuran font disesuaikan sedikit */
-    word-break: break-word; /* Jika layar sangat kecil, teks akan turun ke bawah, bukan melebar */
-    text-align: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(12px, 3.5vw, 20px); /* Ukuran font disesuaikan sedikit */
+  word-break: break-word; /* Jika layar sangat kecil, teks akan turun ke bawah, bukan melebar */
+  text-align: center;
 }
 
 /* Sesuaikan nilai flex dengan waktu yang baru agar grafik bar akurat */
-.sb-segment.green { flex: 4.893; background-color: #00e676; } /* Sektor 1 - Hijau Terang */
-.sb-segment.yellow { flex: 5.3718; background-color: #ffea00; } /* Sektor 2 - Kuning Terang */
-.sb-segment.purple { flex: 5.267; background-color: #d500f9; } /* Sektor 3 - Ungu Terang */
+.sb-segment.green {
+  flex: 4.893;
+  background-color: #00e676;
+} /* Sektor 1 - Hijau Terang */
+.sb-segment.yellow {
+  flex: 5.3718;
+  background-color: #ffea00;
+} /* Sektor 2 - Kuning Terang */
+.sb-segment.purple {
+  flex: 5.267;
+  background-color: #d500f9;
+} /* Sektor 3 - Ungu Terang */
 
 /* Titik (Dot) pada Box Sektor */
-.sector-box.green .dot { background-color: #00e676; }
-.sector-box.yellow .dot { background-color: #ffea00; }
-.sector-box.purple .dot { background-color: #d500f9; }
+.sector-box.green .dot {
+  background-color: #00e676;
+}
+.sector-box.yellow .dot {
+  background-color: #ffea00;
+}
+.sector-box.purple .dot {
+  background-color: #d500f9;
+}
 
 .sector-title {
-    color: var(--text-color-muted);
-    font-size: clamp(8px, 2.5vw, 12px);
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
+  color: var(--text-color-muted);
+  font-size: clamp(8px, 2.5vw, 12px);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .sector-time {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(14px, 4vw, 24px);
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(14px, 4vw, 24px);
 }
 
-.sector-box.green .dot { background-color: var(--green); }
-.sector-box.orange .dot { background-color: var(--accent-orange); }
-.sector-box.red .dot { background-color: var(--accent-red); }
+.sector-box.green .dot {
+  background-color: var(--green);
+}
+.sector-box.orange .dot {
+  background-color: var(--accent-orange);
+}
+.sector-box.red .dot {
+  background-color: var(--accent-red);
+}
 
 .sector-breakdown-label {
-    color: var(--text-color-muted); 
-    font-size: clamp(12px, 3vw, 14px); 
-    margin-top: 30px; 
-    margin-bottom: 10px;
+  color: var(--text-color-muted);
+  font-size: clamp(12px, 3vw, 14px);
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .sector-breakdown-bar {
-    height: 10px;
-    display: flex;
-    border-radius: 5px;
-    overflow: hidden;
+  height: 10px;
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 /* Flags Grid */
 .flags-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
 }
 
 .flag-box {
-    background-color: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .flag-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .flag-color {
-    width: 50px;
-    height: 30px;
-    border-radius: 4px;
-    margin-right: 15px;
+  width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  margin-right: 15px;
 }
 
-.green-bg { background-color: var(--green); }
-.yellow-bg { background-color: var(--yellow); }
-.red-bg { background-color: var(--accent-red); }
-.blue-bg { background-color: var(--blue); }
-.white-bg { background-color: var(--white); border: 1px solid var(--border-color); }
-.checkered-bg { background: repeating-conic-gradient(var(--black) 0% 25%, var(--white) 0% 50%) 50% / 20px 20px; }
+.green-bg {
+  background-color: var(--green);
+}
+.yellow-bg {
+  background-color: var(--yellow);
+}
+.red-bg {
+  background-color: var(--accent-red);
+}
+.blue-bg {
+  background-color: var(--blue);
+}
+.white-bg {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+}
+.checkered-bg {
+  background: repeating-conic-gradient(var(--black) 0% 25%, var(--white) 0% 50%)
+    50% / 20px 20px;
+}
 
 .flag-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(14px, 4vw, 18px);
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(14px, 4vw, 18px);
 }
 
-.flag-box.green .flag-name { color: var(--green); }
-.flag-box.yellow .flag-name { color: var(--yellow); }
-.flag-box.red .flag-name { color: var(--accent-red); }
-.flag-box.blue .flag-name { color: var(--blue); }
-.flag-box.white .flag-name { color: var(--white); }
-.flag-box.black .flag-name { color: var(--white); }
+.flag-box.green .flag-name {
+  color: var(--green);
+}
+.flag-box.yellow .flag-name {
+  color: var(--yellow);
+}
+.flag-box.red .flag-name {
+  color: var(--accent-red);
+}
+.flag-box.blue .flag-name {
+  color: var(--blue);
+}
+.flag-box.white .flag-name {
+  color: var(--white);
+}
+.flag-box.black .flag-name {
+  color: var(--white);
+}
 
 .flag-desc {
-    color: var(--text-color-muted);
-    font-size: clamp(12px, 3vw, 14px);
-    line-height: 1.5;
+  color: var(--text-color-muted);
+  font-size: clamp(12px, 3vw, 14px);
+  line-height: 1.5;
 }
 
 /* Facilities */
 .facilities-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .facility-box {
-    background-color: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: clamp(15px, 4vw, 20px);
-    display: grid;
-    grid-template-columns: clamp(40px, 10vw, 60px) 1fr;
-    gap: 15px;
-    align-items: center;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: clamp(15px, 4vw, 20px);
+  display: grid;
+  grid-template-columns: clamp(40px, 10vw, 60px) 1fr;
+  gap: 15px;
+  align-items: center;
 }
 
 .facility-icon-container {
-    width: clamp(40px, 10vw, 60px);
-    height: clamp(40px, 10vw, 60px);
-    border: 2px solid var(--accent-red);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: clamp(16px, 5vw, 24px);
-    color: var(--accent-red);
+  width: clamp(40px, 10vw, 60px);
+  height: clamp(40px, 10vw, 60px);
+  border: 2px solid var(--accent-red);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(16px, 5vw, 24px);
+  color: var(--accent-red);
 }
 
 .facility-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(14px, 4vw, 18px);
-    color: var(--text-color-light);
-    margin-bottom: 5px;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(14px, 4vw, 18px);
+  color: var(--text-color-light);
+  margin-bottom: 5px;
 }
 
 .facility-desc {
-    color: var(--text-color-muted);
-    font-size: clamp(12px, 3vw, 14px);
-    line-height: 1.5;
+  color: var(--text-color-muted);
+  font-size: clamp(12px, 3vw, 14px);
+  line-height: 1.5;
 }
 
 footer {
-    width: 100%;
-    text-align: center;
-    padding: 30px 0;
-    color: var(--text-color-muted);
-    font-size: 14px;
-    margin-top: auto;
-    border-top: 1px solid var(--border-color);
+  width: 100%;
+  text-align: center;
+  padding: 30px 0;
+  color: var(--text-color-muted);
+  font-size: 14px;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
 }
 
 /* =========================================
@@ -483,496 +554,808 @@ footer {
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Merubah kolom ganda menjadi 1 kolom yang meluas ke bawah di layar kecil */
-    .engine-specs, 
-    .flags-grid, 
-    .facilities-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .spec-item {
-        grid-template-columns: 1fr 1fr;
-    }
+  /* Merubah kolom ganda menjadi 1 kolom yang meluas ke bawah di layar kecil */
+  .engine-specs,
+  .flags-grid,
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
 
-    /* Peta trek diatur agar lebih sesuai di layar kecil */
-    .race-track-map {
-        aspect-ratio: 4/3;
-    }
+  .spec-item {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .start-finish-label {
-        top: -5%;
-        left: 20%;
-    }
+  /* Peta trek diatur agar lebih sesuai di layar kecil */
+  .race-track-map {
+    aspect-ratio: 4/3;
+  }
+
+  .start-finish-label {
+    top: -5%;
+    left: 20%;
+  }
 }
 
 /* --- PERBAIKAN KHUSUS LAYAR SANGAT KECIL (MOBILE PREVIEW) --- */
 @media (max-width: 480px) {
-    /* Perkecil ukuran font judul agar fit di satu baris */
-    .main-title {
-        font-size: 32px; /* Ukuran statis lebih kecil dari minimum clamp asli */
-    }
-    
-    /* Kode yang ada untuk merubah struktur 3 kolom statistik dan sektor */
-    .track-stats, .sector-times {
-        grid-template-columns: 1fr; 
-    }
+  /* Perkecil ukuran font judul agar fit di satu baris */
+  .main-title {
+    font-size: 32px; /* Ukuran statis lebih kecil dari minimum clamp asli */
+  }
+
+  /* Kode yang ada untuk merubah struktur 3 kolom statistik dan sektor */
+  .track-stats,
+  .sector-times {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =========================================
    DESAIN SUPER LICENSE V3 (ULTRA PRO)
    ========================================= */
 .id-card {
-    width: 500px; /* Diperlebar biar proporsional */
-    height: 310px;
-    background: radial-gradient(circle at right bottom, #2a0800, #111 60%, #050505);
-    border: 2px solid #444;
-    border-radius: 12px;
-    position: relative;
-    padding: 20px;
-    box-shadow: 0 15px 50px rgba(255, 87, 34, 0.4), inset 0 0 0 1px rgba(255,255,255,0.1);
-    overflow: hidden;
-    margin: 0 auto;
-    font-family: 'Orbitron', sans-serif;
-    color: white;
-    text-align: left;
+  width: 500px; /* Diperlebar biar proporsional */
+  height: 310px;
+  background: radial-gradient(
+    circle at right bottom,
+    #2a0800,
+    #111 60%,
+    #050505
+  );
+  border: 2px solid #444;
+  border-radius: 12px;
+  position: relative;
+  padding: 20px;
+  box-shadow:
+    0 15px 50px rgba(255, 87, 34, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin: 0 auto;
+  font-family: "Orbitron", sans-serif;
+  color: white;
+  text-align: left;
 }
 
 /* Watermark Logo Besar di Background */
 .id-card::before {
-    content: "FT";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 250px;
-    color: rgba(255, 255, 255, 0.02);
-    font-weight: 900;
-    z-index: 0;
-    pointer-events: none;
+  content: "FT";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 250px;
+  color: rgba(255, 255, 255, 0.02);
+  font-weight: 900;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Efek Kaca / Hologram Mengkilap */
 .id-hologram {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.05) 60%, rgba(255,255,255,0) 100%);
-    z-index: 10;
-    pointer-events: none;
-    mix-blend-mode: overlay;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.05) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }
 
 /* Amankan semua teks agar tidak tertutup watermark */
-.id-header, .id-body, .id-footer { position: relative; z-index: 2; }
+.id-header,
+.id-body,
+.id-footer {
+  position: relative;
+  z-index: 2;
+}
 
 /* Bagian Atas */
 .id-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--accent-orange);
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent-orange);
+  padding-bottom: 8px;
+  margin-bottom: 15px;
 }
 
-.header-left { display: flex; align-items: center; gap: 10px; }
-.header-left .country { background: var(--accent-orange); color: #000; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
-.header-left .title { font-size: 14px; letter-spacing: 1px; color: #ddd; font-weight: bold; }
-.header-right { font-size: 14px; font-weight: 900; color: var(--accent-orange); font-style: italic; }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-left .country {
+  background: var(--accent-orange);
+  color: #000;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.header-left .title {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #ddd;
+  font-weight: bold;
+}
+.header-right {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--accent-orange);
+  font-style: italic;
+}
 
 /* Grid Tengah */
 .id-body {
-    display: grid;
-    grid-template-columns: 110px 1fr 90px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 110px 1fr 90px;
+  gap: 20px;
 }
 
 /* Foto & Kategori */
-.id-photo-container { position: relative; align-self: start; } /* <- Tambahan align-self di sini */
-.id-photo { width: 110px; height: 140px; background: #000; border: 2px solid #666; background-size: cover; background-position: center; border-radius: 5px; }
-.id-class { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: #d32f2f; color: white; font-size: 10px; padding: 4px 10px; border-radius: 12px; width: max-content; font-weight: bold; border: 1px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.id-photo-container {
+  position: relative;
+  align-self: start;
+} /* <- Tambahan align-self di sini */
+.id-photo {
+  width: 110px;
+  height: 140px;
+  background: #000;
+  border: 2px solid #666;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+.id-class {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d32f2f;
+  color: white;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  width: max-content;
+  font-weight: bold;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
 
 /* Data Diri */
-.id-details { display: flex; flex-direction: column; gap: 8px; margin-top: -5px; }
-.detail-row { display: flex; gap: 30px; }
-.field .label { font-size: 9px; color: #888; margin-bottom: 2px; }
-.field h4 { font-size: 13px; color: #00e676; margin: 0; }
-.field h3 { font-size: 20px; color: #fff; margin: 0; font-weight: 900; letter-spacing: 1px; }
-.field .alias { color: var(--accent-orange); font-style: italic; font-size: 14px; }
+.id-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: -5px;
+}
+.detail-row {
+  display: flex;
+  gap: 30px;
+}
+.field .label {
+  font-size: 9px;
+  color: #888;
+  margin-bottom: 2px;
+}
+.field h4 {
+  font-size: 13px;
+  color: #00e676;
+  margin: 0;
+}
+.field h3 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.field .alias {
+  color: var(--accent-orange);
+  font-style: italic;
+  font-size: 14px;
+}
 
 /* Kolom Tanda Tangan (Pakai font tulisan tangan bawaan PC) */
-.signature-box { margin-top: auto; border-bottom: 1px dashed #555; width: 180px; padding-bottom: 2px; }
-.signature { 
-    font-family: 'Brush Script MT', 'Segoe Print', cursive; 
-    font-size: 22px; 
-    color: #fff; 
-    line-height: 1; 
-    margin-top: 5px; 
-    white-space: nowrap; /* <- Mencegah teks turun ke bawah */
-    overflow: hidden;    /* <- Menyembunyikan sisa teks yang kepanjangan */
-    max-width: 100%;
+.signature-box {
+  margin-top: auto;
+  border-bottom: 1px dashed #555;
+  width: 180px;
+  padding-bottom: 2px;
+}
+.signature {
+  font-family: "Brush Script MT", "Segoe Print", cursive;
+  font-size: 22px;
+  color: #fff;
+  line-height: 1;
+  margin-top: 5px;
+  white-space: nowrap; /* <- Mencegah teks turun ke bawah */
+  overflow: hidden; /* <- Menyembunyikan sisa teks yang kepanjangan */
+  max-width: 100%;
 }
 /* Sisi Kanan (Chip & Nomor) */
-.id-side { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
-.id-chip { width: 45px; height: 35px; background: linear-gradient(135deg, #e6c200 0%, #ffdf00 50%, #997a00 100%); border-radius: 6px; position: relative; overflow: hidden; border: 1px solid #665000; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-.id-chip::after { content: ""; position: absolute; top: 10px; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.3); box-shadow: 0 10px 0 rgba(0,0,0,0.3); }
-.id-chip::before { content: ""; position: absolute; left: 15px; top: 0; width: 1px; height: 100%; background: rgba(0,0,0,0.3); box-shadow: 15px 0 0 rgba(0,0,0,0.3); }
-.id-number { font-size: 70px; font-weight: 900; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.2); margin-bottom: -15px; text-shadow: 3px 3px 0px rgba(255, 87, 34, 0.6); }
+.id-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.id-chip {
+  width: 45px;
+  height: 35px;
+  background: linear-gradient(135deg, #e6c200 0%, #ffdf00 50%, #997a00 100%);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #665000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.id-chip::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+.id-chip::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 15px 0 0 rgba(0, 0, 0, 0.3);
+}
+.id-number {
+  font-size: 70px;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
+  margin-bottom: -15px;
+  text-shadow: 3px 3px 0px rgba(255, 87, 34, 0.6);
+}
 
 /* Bawah (Barcode & Legal) */
-.id-footer { position: absolute; bottom: 15px; width: calc(100% - 40px); display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
-.id-barcode { width: 150px; height: 25px; background: repeating-linear-gradient(90deg, #fff 0, #fff 2px, transparent 2px, transparent 4px, #fff 4px, #fff 6px, transparent 6px, transparent 9px); opacity: 0.6; }
-.id-legal { font-size: 9px; color: #777; text-align: right; font-family: monospace; }
+.id-footer {
+  position: absolute;
+  bottom: 15px;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+}
+.id-barcode {
+  width: 150px;
+  height: 25px;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff 0,
+    #fff 2px,
+    transparent 2px,
+    transparent 4px,
+    #fff 4px,
+    #fff 6px,
+    transparent 6px,
+    transparent 9px
+  );
+  opacity: 0.6;
+}
+.id-legal {
+  font-size: 9px;
+  color: #777;
+  text-align: right;
+  font-family: monospace;
+}
 
 /* =========================================
    TAMBAHAN CSS UNTUK FOTO & TOMBOL SAVE
    ========================================= */
 /* Tombol upload palsu biar terlihat keren */
 .file-label {
-    background-color: #333;
-    color: var(--text-color-light);
-    padding: 12px;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Orbitron', sans-serif;
-    border: 1px dashed var(--accent-orange);
-    transition: background-color 0.3s;
+  background-color: #333;
+  color: var(--text-color-light);
+  padding: 12px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+  border: 1px dashed var(--accent-orange);
+  transition: background-color 0.3s;
 }
 
-.file-label:hover { background-color: #444; }
+.file-label:hover {
+  background-color: #444;
+}
 
 /* Menyiapkan kotak foto agar gambar pas */
 .id-photo {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden; /* Biar foto nggak luber */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden; /* Biar foto nggak luber */
 }
 
 /* Tombol Download/Save */
 .save-btn {
-    margin-top: 25px;
-    padding: 15px 25px;
-    background-color: #00e676; /* Warna Hijau Neon */
-    color: #000;
-    border: none;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 230, 118, 0.4);
-    transition: transform 0.2s;
+  margin-top: 25px;
+  padding: 15px 25px;
+  background-color: #00e676; /* Warna Hijau Neon */
+  color: #000;
+  border: none;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 230, 118, 0.4);
+  transition: transform 0.2s;
 }
 
-.save-btn:active { transform: scale(0.95); }
+.save-btn:active {
+  transform: scale(0.95);
+}
 /* --- --- --- */
 
 /* =========================================
    FORM BOOKING DI DALAM PRICE CARD
    ========================================= */
 .success-msg {
-    background-color: rgba(0, 230, 118, 0.1);
-    color: #00e676;
-    border: 1px solid #00e676;
-    padding: 15px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
+  background-color: rgba(0, 230, 118, 0.1);
+  color: #00e676;
+  border: 1px solid #00e676;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
 }
 
 .booking-form {
-    margin-top: 25px;
-    text-align: left;
-    border-top: 1px solid var(--border-color);
-    padding-top: 20px;
+  margin-top: 25px;
+  text-align: left;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
 }
 
 .input-row {
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .input-row label {
-    color: var(--text-color-muted);
-    font-size: 12px;
-    font-family: 'Orbitron', sans-serif;
-    width: 35%;
+  color: var(--text-color-muted);
+  font-size: 12px;
+  font-family: "Orbitron", sans-serif;
+  width: 35%;
 }
 
 .booking-input {
-    width: 60%;
-    padding: 10px;
-    background-color: #111;
-    border: 1px solid var(--border-color);
-    color: white;
-    border-radius: 5px;
-    font-family: 'Roboto', sans-serif;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    /* Custom icon untuk penanggalan & jam agar putih */
-    color-scheme: dark; 
+  width: 60%;
+  padding: 10px;
+  background-color: #111;
+  border: 1px solid var(--border-color);
+  color: white;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  /* Custom icon untuk penanggalan & jam agar putih */
+  color-scheme: dark;
 }
 
 .booking-input:focus {
-    border-color: var(--accent-orange);
-    box-shadow: 0 0 8px rgba(255, 87, 34, 0.3);
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.3);
 }
 
 /* Modifikasi tombol Book agar menjadi button form */
 button.book-btn {
-    width: 100%;
-    margin-top: 10px;
-    cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 /* --- TAMPILAN HARGA DINAMIS --- */
 .price-display {
-    background: #111;
-    border-left: 4px solid var(--accent-orange);
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 0 10px 10px 0;
-    text-align: center;
+  background: #111;
+  border-left: 4px solid var(--accent-orange);
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 0 10px 10px 0;
+  text-align: center;
 }
 
 #label-hari {
-    font-family: 'Orbitron';
-    font-size: 14px;
-    letter-spacing: 2px;
+  font-family: "Orbitron";
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 #display-harga {
-    font-size: 40px;
-    margin: 10px 0;
-    color: white;
+  font-size: 40px;
+  margin: 10px 0;
+  color: white;
 }
 
 /* --- GRID INPUT --- */
 .input-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
-.field { display: flex; flex-direction: column; }
-.field label { font-size: 10px; color: #888; margin-bottom: 5px; font-family: 'Orbitron'; }
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.field label {
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 5px;
+  font-family: "Orbitron";
+}
 
 /* --- TOMBOL BOOKING PRO --- */
 .pro-book-btn {
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(45deg, #d32f2f, #ff5722);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-family: 'Orbitron';
-    font-weight: bold;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(211, 47, 47, 0.4);
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(45deg, #d32f2f, #ff5722);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-family: "Orbitron";
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(211, 47, 47, 0.4);
 }
 
 .pro-book-btn:hover {
-    transform: scale(1.02) translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 87, 34, 0.6);
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 87, 34, 0.6);
 }
 
-.pro-book-btn:active { transform: scale(0.98); }
+.pro-book-btn:active {
+  transform: scale(0.98);
+}
 
 .pro-book-btn .btn-icon {
-    transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
 .pro-book-btn:hover .btn-icon {
-    transform: translateX(100px); /* Efek mobil melaju saat di-hover */
-    opacity: 0;
+  transform: translateX(100px); /* Efek mobil melaju saat di-hover */
+  opacity: 0;
 }
 
 /* Animasi cahaya menyapu tombol */
 .pro-book-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
-    transform: rotate(45deg);
-    transition: 0.5s;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
 }
 
 .pro-book-btn:hover::after {
-    left: 100%;
+  left: 100%;
 }
 
 /* =========================================
    PERBAIKAN FORM GENERATOR LISENSI
    ========================================= */
 .license-form {
-    display: flex;
-    flex-direction: column; /* Memaksa input berbaris ke bawah */
-    gap: 15px;
-    max-width: 400px;
-    margin: 0 auto 30px auto; /* Membuat form presisi di tengah */
+  display: flex;
+  flex-direction: column; /* Memaksa input berbaris ke bawah */
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto 30px auto; /* Membuat form presisi di tengah */
 }
 
 .license-form input {
-    padding: 15px;
-    background-color: #1a1a1a;
-    border: 1px solid #444;
-    color: white;
-    font-family: 'Orbitron', sans-serif;
-    border-radius: 8px;
-    outline: none;
-    transition: all 0.3s;
+  padding: 15px;
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  color: white;
+  font-family: "Orbitron", sans-serif;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s;
 }
 
 .license-form input:focus {
-    border-color: var(--accent-orange);
-    box-shadow: 0 0 10px rgba(255, 87, 34, 0.3);
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.3);
 }
 
 .license-form button#generate-btn {
-    padding: 15px;
-    background: linear-gradient(90deg, #d32f2f, #ff5722);
-    color: white;
-    border: none;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin-top: 10px;
+  padding: 15px;
+  background: linear-gradient(90deg, #d32f2f, #ff5722);
+  color: white;
+  border: none;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  margin-top: 10px;
 }
 
 .license-form button#generate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
 }
 
 .license-form button#generate-btn:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 /* =========================================
    MODAL PAYMENT GATEWAY (SIMULASI)
    ========================================= */
 .payment-modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px); /* Bikin background belakang blur */
-    z-index: 9999;
-    display: none; /* Disembunyikan awalnya */
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px); /* Bikin background belakang blur */
+  z-index: 9999;
+  display: none; /* Disembunyikan awalnya */
+  justify-content: center;
+  align-items: center;
 }
 
 .payment-box {
-    background: #111;
-    border: 2px solid var(--accent-orange);
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 15px 40px rgba(255, 87, 34, 0.3);
-    overflow: hidden;
-    animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #111;
+  border: 2px solid var(--accent-orange);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 15px 40px rgba(255, 87, 34, 0.3);
+  overflow: hidden;
+  animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes pop-in {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .payment-header {
-    background: #1a1a1a;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
+  background: #1a1a1a;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
 }
 
 .payment-header h3 {
-    color: var(--text-color-light);
-    font-size: 16px;
-    margin: 0;
+  color: var(--text-color-light);
+  font-size: 16px;
+  margin: 0;
 }
 
 .close-btn {
-    background: none; border: none; color: #888;
-    font-size: 18px; cursor: pointer; transition: 0.3s;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.close-btn:hover { color: var(--accent-red); }
+.close-btn:hover {
+  color: var(--accent-red);
+}
 
 .payment-body {
-    padding: 30px 20px;
-    text-align: center;
+  padding: 30px 20px;
+  text-align: center;
 }
 
 .payment-body p {
-    color: #888; font-size: 12px; margin-bottom: 5px;
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .modal-price-text {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--accent-orange);
-    font-size: 32px;
-    margin: 0 0 25px 0;
+  font-family: "Orbitron", sans-serif;
+  color: var(--accent-orange);
+  font-size: 32px;
+  margin: 0 0 25px 0;
 }
 
 .qris-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .qris-img {
-    width: 150px; height: 150px;
-    margin-bottom: 10px;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
 }
 
 .qris-text {
-    color: #333 !important; font-weight: bold; margin-bottom: 10px;
+  color: #333 !important;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .ewallet-logos {
-    color: #000; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: bold;
+  color: #000;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .warning-text {
-    color: #ffeb3b !important; font-size: 11px !important; margin-bottom: 20px; font-style: italic;
+  color: #ffeb3b !important;
+  font-size: 11px !important;
+  margin-bottom: 20px;
+  font-style: italic;
 }
 
 .pay-confirm-btn {
-    width: 100%;
-    padding: 15px;
-    background: #00e676;
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.3s;
+  width: 100%;
+  padding: 15px;
+  background: #00e676;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.pay-confirm-btn:hover { background: #00c853; transform: translateY(-2px); }
-.pay-confirm-btn:active { transform: scale(0.98); }
+.pay-confirm-btn:hover {
+  background: #00c853;
+  transform: translateY(-2px);
+}
+.pay-confirm-btn:active {
+  transform: scale(0.98);
+}
+
+/* Styling Grid Paket Baru */
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.price-card {
+  background: linear-gradient(145deg, #111827, #1f2937);
+  border: 1px solid #374151;
+  border-top: 4px solid #ef4444;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-5px);
+  border-color: #ef4444;
+}
+
+.package-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  font-family: "Orbitron", sans-serif;
+  padding: 2px 10px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+}
+
+.price-card h3 {
+  font-family: "Orbitron", sans-serif;
+  color: #fff;
+  font-size: 1.4rem;
+  margin: 0.5rem 0 0.2rem 0;
+  text-transform: uppercase;
+}
+
+.price-card .desc {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  min-height: 35px;
+}
+
+.price-card .cost {
+  margin: 1.5rem 0;
+  color: #10b981;
+  font-family: "Orbitron", sans-serif;
+}
+
+.price-card .currency {
+  font-size: 1rem;
+  vertical-align: super;
+  font-weight: bold;
+}
+
+.price-card .amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.details-spec {
+  border-top: 1px dashed #374151;
+  padding-top: 1rem;
+  text-align: left;
+}
+
+.spec-line {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.spec-line span {
+  color: #9ca3af;
+}
