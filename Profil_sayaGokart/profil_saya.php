@@ -40,7 +40,6 @@ $data = mysqli_fetch_assoc($query);
     <p class="sub">Booking System</p>
     <<ul>
     <li><a href="../index.html" style="text-decoration:none; color:inherit; display:block;">Home</a></li>
-    
     <li><a href="../dashboard/dashboard.php">Dashboard</a></li>
     <li><a href="../booking/booking.php">Booking</a></li>
     <li><a href="../riwayat booking/riwayat.php">Riwayat Balapan</a></li>

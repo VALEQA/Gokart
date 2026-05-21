@@ -1,4 +1,6 @@
-/* ROOT VARIABLES */
+/* ==========================================================================
+   1. ROOT VARIABLES (Palet Warna & Token Desain)
+   ========================================================================== */
 :root {
   --primary: #e63946;
   --primary-light: #ffe5e5;
@@ -11,7 +13,9 @@
   --transition: all 0.3s ease;
 }
 
-/* GLOBAL STYLES */
+/* ==========================================================================
+   2. GLOBAL STYLES
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -28,9 +32,12 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
+  width: 100%;
 }
 
-/* SIDEBAR STYLES */
+/* ==========================================================================
+   3. SIDEBAR STYLES (Menu Navigasi Samping)
+   ========================================================================== */
 .sidebar {
   width: 260px;
   background-color: var(--white);
@@ -42,6 +49,7 @@ body {
   position: fixed;
   height: 100vh;
   z-index: 100;
+  transition: var(--transition); /* Efek smooth saat transisi ke layar kecil */
 }
 
 .brand {
@@ -74,6 +82,9 @@ body {
   border-radius: 8px;
   margin-bottom: 0.5rem;
   transition: var(--transition);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Jaga-jaga kalau teks menu kepanjangan */
 }
 
 .nav-link:hover,
@@ -125,11 +136,15 @@ body {
   border-color: var(--primary);
 }
 
-/* MAIN CONTENT */
+/* ==========================================================================
+   4. MAIN CONTENT AREA (Area Konten Dinamis)
+   ========================================================================== */
 .main {
-  margin-left: 260px;
+  margin-left: 260px; /* Pas dengan lebar sidebar */
   padding: 2.5rem 3.5rem;
-  width: calc(100% - 260px);
+  flex-grow: 1; /* Solusi Flexbox agar sisa layar terisi penuh tanpa calc bug */
+  min-width: 0;  /* Mengunci container utama agar tidak jebol ke kanan */
+  transition: var(--transition);
 }
 
 .header {
@@ -146,7 +161,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* CARDS GLOBAL */
+/* ==========================================================================
+   5. CARDS GLOBAL DESIGN
+   ========================================================================== */
 .card {
   background: var(--white);
   border-radius: 12px;
@@ -155,10 +172,10 @@ body {
   border: 1px solid transparent;
 }
 
-/* STATS SECTION */
+/* STATS CARDS SECTION */
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -169,7 +186,7 @@ body {
 }
 
 .stat-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Efek kartu ngambang saat disorot */
 }
 
 .stat-card p {
@@ -187,7 +204,9 @@ body {
   color: var(--dark);
 }
 
-/* BOOKING LIST SECTION */
+/* ==========================================================================
+   6. BOOKING LIST SECTION (Antrean Balapan)
+   ========================================================================== */
 .booking h2,
 .aksi h2 {
   margin-bottom: 1.2rem;
@@ -197,13 +216,13 @@ body {
   gap: 10px;
 }
 
-/* Container agar list booking bisa di-scroll jika terlalu banyak */
 .booking-list {
   max-height: 500px;
   overflow-y: auto;
   padding-right: 5px;
 }
 
+/* Custom Scrollbar Premium untuk List Booking */
 .booking-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -217,7 +236,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-left: 5px solid var(--primary);
+  border-left: 5px solid var(--primary); /* Aksen garis merah balap */
   transition: var(--transition);
 }
 
@@ -253,7 +272,7 @@ body {
   font-style: italic;
 }
 
-/* BUTTONS */
+/* GENERAL BUTTONS */
 .btn {
   padding: 0.7rem 1.4rem;
   border: none;
@@ -286,7 +305,9 @@ body {
   background: #e2eadd;
 }
 
-/* AKSI CEPAT */
+/* ==========================================================================
+   7. AKSI CEPAT (Quick Links)
+   ========================================================================== */
 .aksi {
   margin-top: 3rem;
 }
@@ -320,46 +341,60 @@ body {
   color: var(--gray);
 }
 
-/* RESPONSIVE DESIGN */
+/* ==========================================================================
+   8. RESPONSIVE DESIGN (Media Queries untuk Tablet & HP)
+   ========================================================================== */
 @media (max-width: 992px) {
   .main {
     padding: 2rem;
   }
   .stats {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
+  /* Menyusutkan ukuran sidebar jadi mini bar di HP */
   .sidebar {
-    width: 80px;
-    padding: 2rem 0.5rem;
+    width: 70px;
+    padding: 2rem 0.3rem;
   }
+  
+  /* FIX RESPONSIVE: Memaksa font teks menu hancur jadi 0 agar menghilang total */
   .brand h2,
   .brand p,
-  .nav-link span,
   .sidebar-user,
-  .logout-btn span {
-    display: none;
+  .logout-btn,
+  .nav-menu .nav-link {
+    font-size: 0; 
+    text-align: center;
   }
+  
+  /* Geser margin konten utama menyesuaikan mini sidebar */
   .main {
-    margin-left: 80px;
+    margin-left: 70px;
     padding: 1.5rem;
   }
+  
   .stats {
     grid-template-columns: 1fr;
   }
+  
+  /* Kartu antrean booking berubah jadi susunan vertikal di layar HP */
   .booking-box {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
+  
   .booking-right {
     width: 100%;
   }
+  
   .booking-right button {
     width: 100%;
   }
+  
   .aksi-container {
     grid-template-columns: 1fr;
   }

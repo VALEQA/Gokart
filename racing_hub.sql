@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2026 at 11:19 AM
+-- Generation Time: May 21, 2026 at 04:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `racing_hub`
+-- Database: `racinghub`
 --
 
 -- --------------------------------------------------------
@@ -44,14 +44,9 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id`, `user_id`, `paket_id`, `tanggal_booking`, `jam_booking`, `jumlah_orang`, `total_harga`, `status`, `created_at`) VALUES
-(1, 2, 2, '2026-04-15', '15:00:00', 1, 250000, 'aktif', '2026-05-08 19:55:13'),
-(2, 2, 1, '2026-04-10', '13:00:00', 1, 150000, 'selesai', '2026-05-08 19:55:13'),
-(3, 3, 3, '2026-04-16', '17:00:00', 3, 400000, 'aktif', '2026-05-08 19:55:13'),
-(4, 2, 1, '2026-05-19', '14:00:00', 3, 400000, 'aktif', '2026-05-09 05:13:15'),
-(5, 2, 1, '2026-05-30', '15:00:00', 3, 400000, 'aktif', '2026-05-09 05:14:08'),
-(6, 2, 1, '2026-05-25', '18:00:00', 1, 250000, 'aktif', '2026-05-09 06:08:05'),
-(7, 2, 1, '2026-05-14', '11:00:00', 3, 400000, 'aktif', '2026-05-09 06:10:19'),
-(0, 2, 1, '2026-05-10', '10:00:00', 1, 250000, 'aktif', '2026-05-10 08:25:59');
+(1, 3, 4, '2026-05-21', '18:00:00', 1, 300000, 'selesai', '2026-05-21 12:13:17'),
+(2, 3, 2, '2026-05-21', '14:00:00', 1, 250000, 'selesai', '2026-05-21 13:10:36'),
+(3, 1, 3, '2026-05-21', '18:00:00', 3, 400000, 'selesai', '2026-05-21 13:11:26');
 
 -- --------------------------------------------------------
 
@@ -63,17 +58,13 @@ CREATE TABLE `hasil_balapan` (
   `id` int(11) NOT NULL,
   `booking_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `waktu_tercepat` time DEFAULT NULL,
+  `sektor_1` decimal(5,3) DEFAULT 99.999,
+  `sektor_2` decimal(5,3) DEFAULT 99.999,
+  `sektor_3` decimal(5,3) DEFAULT 99.999,
+  `total_lap` decimal(5,3) DEFAULT 99.999,
   `posisi_finish` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `hasil_balapan`
---
-
-INSERT INTO `hasil_balapan` (`id`, `booking_id`, `user_id`, `waktu_tercepat`, `posisi_finish`, `created_at`) VALUES
-(1, 2, 2, '00:01:45', 1, '2026-05-08 19:55:42');
 
 -- --------------------------------------------------------
 
@@ -97,7 +88,8 @@ CREATE TABLE `paket_bermain` (
 INSERT INTO `paket_bermain` (`id`, `nama_paket`, `deskripsi`, `durasi_menit`, `maksimal_orang`, `harga`) VALUES
 (1, 'Beginner', 'Pemula', 20, 1, 150000),
 (2, 'ProRace', 'Pro', 30, 1, 250000),
-(3, 'Keluarga', 'Keluarga', 30, 3, 400000);
+(3, 'Keluarga', 'Keluarga', 30, 3, 400000),
+(4, 'PRO MAx', 'PROMAX', 50, 1, 300000);
 
 -- --------------------------------------------------------
 
@@ -112,21 +104,45 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('admin','user') DEFAULT 'user',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `total_bermain` int(11) DEFAULT 0,
+  `best_time` decimal(5,3) DEFAULT 99.999,
+  `booking_aktif` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `nama_lengkap`, `nomor_hp`, `email`, `password`, `role`, `created_at`) VALUES
-(1, 'Race Director', '08123456789', 'admin@gokart.com', '$2y$10$S9pM9kP9vX7vK3.vI.G8/.LpXN.Y8M6p4G2M4G2M4G2M4G2M4G2M4', 'admin', '2026-05-10 07:50:30'),
-(2, 'fasi', '082113996387', 'andi@email.com', '$2y$10$sCUfVmAEKr9tGFHtD6vyo.ovoWM9unyzlXEML.u4eG5uUGN1G7Zfu', 'user', '2026-05-10 07:54:03'),
-(3, 'Ahmad Faishal Baihaqi', '082113996387', 'ilyas089688678669@gmail.com', '$2y$10$S0C122B89z4o7Ftl2DGZseSZQvR2rDlQlPNvPCaAFmV/xd4vfSTLK', 'user', '2026-05-10 08:46:49');
+INSERT INTO `users` (`id`, `nama_lengkap`, `nomor_hp`, `email`, `password`, `role`, `created_at`, `total_bermain`, `best_time`, `booking_aktif`) VALUES
+(1, 'Race Director', '08123456789', 'admin@gokart.com', '$2y$10$AdxOnxCVV3UZEY4qKFVW4OJIN/Ma.cM2Yh7Na0cN4R24RYmYH7fgi', 'admin', '2026-05-21 12:04:42', 0, 99.999, 0),
+(3, 'Andi brambang', '081234567890', 'andi@gmail.com', '$2y$10$AdxOnxCVV3UZEY4qKFVW4OJIN/Ma.cM2Yh7Na0cN4R24RYmYH7fgi', 'user', '2026-05-21 12:06:18', 0, 99.999, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_booking_user` (`user_id`),
+  ADD KEY `fk_booking_paket` (`paket_id`);
+
+--
+-- Indexes for table `hasil_balapan`
+--
+ALTER TABLE `hasil_balapan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_hasil_booking` (`booking_id`),
+  ADD KEY `fk_hasil_user` (`user_id`);
+
+--
+-- Indexes for table `paket_bermain`
+--
+ALTER TABLE `paket_bermain`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -140,10 +156,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `hasil_balapan`
+--
+ALTER TABLE `hasil_balapan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `paket_bermain`
+--
+ALTER TABLE `paket_bermain`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `booking`
+--
+ALTER TABLE `booking`
+  ADD CONSTRAINT `fk_booking_paket` FOREIGN KEY (`paket_id`) REFERENCES `paket_bermain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_booking_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `hasil_balapan`
+--
+ALTER TABLE `hasil_balapan`
+  ADD CONSTRAINT `fk_hasil_booking` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_hasil_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

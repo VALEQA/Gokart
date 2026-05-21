@@ -4,7 +4,7 @@ $conn = mysqli_connect(
     "localhost",
     "root",
     "",
-    "racing_hub"
+    "racinghub"
 );
 
 if(!$conn){

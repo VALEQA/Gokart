@@ -1,0 +1,366 @@
+:root {
+  --primary: #e63946;
+  --primary-light: #ffe5e5;
+  --dark: #1d3557;
+  --light: #f1faee;
+  --gray: #6c757d;
+  --white: #ffffff;
+  --bg-body: #f8f9fa;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+body {
+  background-color: var(--bg-body);
+  color: var(--dark);
+  line-height: 1.6;
+}
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  width: 260px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid #eee;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+.brand h2 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.brand p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+.nav-menu {
+  list-style: none;
+  margin-top: 2rem;
+  flex-grow: 1;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--gray);
+  display: block;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: bold;
+}
+.sidebar-bottom {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+.sidebar-user {
+  padding: 1rem;
+  background: var(--bg-body);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.sidebar-user p {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-user small {
+  color: var(--gray);
+  display: block;
+}
+.logout-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.logout-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* MAIN CONTENT */
+.main {
+  margin-left: 260px;
+  padding: 2.5rem 3.5rem;
+  width: calc(100% - 260px);
+}
+.header {
+  margin-bottom: 2rem;
+}
+.header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+.header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* SECTOR NAVIGATION TABS */
+.leaderboard-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: var(--white);
+  color: var(--gray);
+  border: 1px solid #e2e8f0;
+  transition: var(--transition);
+}
+.tab-btn:hover {
+  background-color: #f1f5f9;
+  color: var(--dark);
+}
+.tab-btn.active {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/* TABEL LEADERBOARD */
+.table-container {
+  padding: 1rem 0;
+  overflow-x: auto;
+}
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.leaderboard-table th {
+  padding: 1rem 1.5rem;
+  color: var(--gray);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border-bottom: 2px solid #eee;
+}
+.leaderboard-table td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #f1f1f1;
+  vertical-align: middle;
+}
+.leaderboard-table tbody tr {
+  transition: var(--transition);
+}
+.leaderboard-table tbody tr:hover {
+  background-color: var(--bg-body);
+}
+.podium-row {
+  background-color: #fafbfe;
+}
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.rank-1 {
+  background-color: #ffd700;
+  color: #6e5500;
+}
+.rank-2 {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+.rank-3 {
+  background-color: #edd1b6;
+  color: #7c4a1b;
+}
+.rank-badge:not(.rank-1):not(.rank-2):not(.rank-3) {
+  background-color: var(--bg-body);
+  color: var(--gray);
+}
+.time-highlight {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+  .main {
+    padding: 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+    padding: 2rem 0.5rem;
+  }
+  .brand h2,
+  .brand p,
+  .nav-link span,
+  .sidebar-user,
+  .logout-btn span {
+    display: none;
+  }
+  .main {
+    margin-left: 80px;
+    padding: 1.5rem;
+    width: calc(100% - 80px);
+  }
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+  .time-highlight {
+    font-size: 1rem;
+  }
+}
+
+/* ==========================================================================
+   6. TAMBAHAN KHUSUS UNTUK HALAMAN HASIL BALAPAN (SINKRONISASI)
+   ========================================================================== */
+.chart-container {
+  margin-bottom: 2rem;
+}
+
+.chart-container h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--dark);
+  border-left: 4px solid var(--primary);
+  padding-left: 10px;
+}
+
+.racing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.racing-table th {
+  padding: 1rem 1.5rem;
+  color: var(--gray);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border-bottom: 2px solid #eee;
+}
+
+.racing-table td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #f1f1f1;
+  vertical-align: middle;
+}
+
+.racing-table tbody tr {
+  transition: var(--transition);
+}
+
+.racing-table tbody tr:hover {
+  background-color: var(--bg-body);
+}
+
+.sector-time {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+.badge-paket {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.total-time-highlight {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.total-time-highlight span {
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: var(--gray);
+}
+
+/* BADGE POSISI FINISH DI HASIL BALAPAN */
+.finish-badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-align: center;
+  min-width: 45px;
+}
+
+.finish-badge.P-1 {
+  background-color: #ffd700;
+  color: #6e5500;
+}
+.finish-badge.P-2 {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+.finish-badge.P-3 {
+  background-color: #edd1b6;
+  color: #7c4a1b;
+}
+.finish-badge:not(.P-1):not(.P-2):not(.P-3) {
+  background-color: #f1f5f9;
+  color: var(--gray);
+}
+
+/* RESPONSIVE TAMBAHAN UNTUK TABEL HASIL BALAPAN */
+@media (max-width: 768px) {
+  .racing-table th,
+  .racing-table td {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+  .total-time-highlight {
+    font-size: 1rem;
+  }
+}

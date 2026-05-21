@@ -1,28 +1,38 @@
 <?php
-session_start(); // Wajib untuk membaca siapa yang login
+session_start(); // Memulai session untuk membaca data user yang login
 
-// 1. Proteksi Halaman
+// 1. PROTEKSI HALAMAN: Jika belum login, tendang kembali ke login.php
 if (!isset($_SESSION['login'])) {
     header("Location: ../login.php");
     exit;
 }
 
-require '../koneksi.php'; // Sesuaikan path ke file koneksi utama
+require '../koneksi.php'; // Hubungkan ke file koneksi utama database Anda
 
-// 2. Ambil ID User dari Session
+// 2. AMBIL DATA USER DARI SESSION
 $user_id = $_SESSION['id_user']; 
 
 /**
- * DATA FETCHING (Menggunakan $koneksi sesuai file koneksi.php)
+ * ==========================================================================
+ * DATA FETCHING & STATISTIK REAL-TIME (JALUR OTOMATIS)
+ * ==========================================================================
  */
 
-// 1. Profil User (Gunakan nama_lengkap sesuai database)
+// A. Ambil Data Profil User dari Tabel 'users'
 $user_query = mysqli_query($koneksi, "SELECT * FROM users WHERE id = '$user_id'");
 $user       = mysqli_fetch_assoc($user_query);
-// Ambil nama depan saja untuk sapaan
+
+// Antisipasi jika data user tiba-tiba tidak ada di database (misal setelah dibersihkan)
+if (!$user) {
+    session_destroy();
+    header("Location: ../login.php");
+    exit;
+}
+
+// Ambil kata pertama dari nama lengkap untuk sapaan hangat di header
 $first_name = explode(' ', $user['nama_lengkap'])[0];
 
-// 2. Statistik: Total Selesai Bermain
+// B. STATISTIK 1: Total Selesai Bermain (Dihitung otomatis dari tabel booking)
 $total_query = mysqli_query($koneksi, "
     SELECT COUNT(*) as total 
     FROM booking 
@@ -30,17 +40,16 @@ $total_query = mysqli_query($koneksi, "
 ");
 $total = mysqli_fetch_assoc($total_query)['total'];
 
-// 3. Statistik: Waktu Tercepat
-// Catatan: Pastikan tabel 'hasil_balapan' sudah kamu buat di database
+// C. STATISTIK 2: Waktu Terbaik 1 Lap (Mencari nilai terkecil/MIN dari hasil_balapan)
 $best_query = mysqli_query($koneksi, "
-    SELECT MIN(waktu_tercepat) as best_time 
+    SELECT MIN(total_lap) as best_time 
     FROM hasil_balapan 
     WHERE user_id = '$user_id'
 ");
 $best_data = mysqli_fetch_assoc($best_query);
-$best_time = ($best_data && $best_data['best_time']) ? $best_data['best_time'] : '00:00';
+$best_time = ($best_data && $best_data['best_time'] > 0) ? number_format($best_data['best_time'], 3) . ' detik' : 'Belum Ada';
 
-// 4. Statistik: Jumlah Booking Sedang Aktif
+// D. STATISTIK 3: Booking Aktif (Menghitung booking yang statusnya masih 'aktif')
 $aktif_query = mysqli_query($koneksi, "
     SELECT COUNT(*) as total 
     FROM booking 
@@ -48,7 +57,7 @@ $aktif_query = mysqli_query($koneksi, "
 ");
 $aktif_count = mysqli_fetch_assoc($aktif_query)['total'];
 
-// 5. Daftar Semua Booking Aktif
+// E. LISTING: Daftar Semua Jadwal Booking Aktif Milik User Terkait
 $next_query = mysqli_query($koneksi, "
     SELECT b.*, p.nama_paket, p.durasi_menit
     FROM booking b
@@ -69,7 +78,6 @@ $next_query = mysqli_query($koneksi, "
 <body>
 
 <div class="container">
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-top">
             <div class="brand">
@@ -78,11 +86,12 @@ $next_query = mysqli_query($koneksi, "
             </div>
 
             <ul class="nav-menu">
-                <li><a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a></li>
-                <li><a href="../booking/booking.php" class="nav-link active">Booking</a></li>
+                <li><a href="../dashboard/dashboard.php" class="nav-link active">Dashboard</a></li>
+                <li><a href="../booking/booking.php" class="nav-link">Booking</a></li>
                 <li><a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a></li>
-                <li><a href="#" class="nav-link">Hasil Balapan</a></li>
-                <li><a href="#" class="nav-link">Leaderboard</a></li>
+                <li><a href="../hasil_balapan/hasil_balapan.php" class="nav-link">Hasil Balapan</a></li>
+                <li><a href="../leaderboard/leaderboard.php" class="nav-link">Leaderboard</a></li>
+                <li><a href="../pembayaran/pembayaran.php" class="nav-link">Pembayaran</a></li>
                 <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a></li>
             </ul>       
         </div>
@@ -96,15 +105,12 @@ $next_query = mysqli_query($koneksi, "
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main">
-        <!-- HEADER -->
         <header class="header">
             <h1>Halo, <?= htmlspecialchars($first_name); ?>!</h1>
-            <p>Siap untuk memecahkan rekor waktu hari ini?</p>
+            <p>Siap untuk memecahkan rekor waktu hari ini? 🏁</p>
         </header>
 
-        <!-- STATS CARDS -->
         <section class="stats">
             <div class="card stat-card">
                 <p>Total Bermain</p>
@@ -112,7 +118,7 @@ $next_query = mysqli_query($koneksi, "
             </div>
 
             <div class="card stat-card">
-                <p>Waktu Terbaik</p>
+                <p>Waktu Terbaik (1 Lap)</p>
                 <h3 class="stat-number"><?= $best_time; ?></h3>
             </div>
 
@@ -122,7 +128,6 @@ $next_query = mysqli_query($koneksi, "
             </div>
         </section>
 
-        <!-- LIST BOOKING BERIKUTNYA -->
         <section class="booking">
             <h2>Booking Berikutnya</h2>
             <div class="booking-list">
@@ -155,7 +160,6 @@ $next_query = mysqli_query($koneksi, "
             </div>
         </section>
 
-        <!-- QUICK ACTIONS -->
         <section class="aksi">
             <h2>Aksi Cepat</h2>
             <div class="aksi-container">
@@ -164,7 +168,7 @@ $next_query = mysqli_query($koneksi, "
                     <p>Pilih jadwal dan mulai balapan</p>
                 </div>
 
-                <div class="card aksi-box clickable">
+                <div class="card aksi-box clickable" onclick="window.location.href='../leaderboard/leaderboard.php'">
                     <h3>Lihat Leaderboard</h3>
                     <p>Cek ranking pemain terbaik</p>
                 </div>

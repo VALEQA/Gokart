@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root"; // Default username XAMPP
 $pass = "";     // Default password XAMPP kosong
-$db   = "racing_hub";
+$db   = "racinghub";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 

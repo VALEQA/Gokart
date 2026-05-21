@@ -1,5 +1,5 @@
 <?php
-session_start(); // Baris 1: Wajib untuk membaca session login
+session_start(); 
 
 // 1. Proteksi Halaman
 if (!isset($_SESSION['login'])) {
@@ -7,23 +7,17 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-require '../koneksi.php'; // Sesuaikan path koneksi
+require '../koneksi.php'; 
 
-/**
- * ==========================================
- * KONFIGURASI DATA DARI SESSION
- * ==========================================
- */
 $user_id = $_SESSION['id_user']; 
-// Ambil ID booking dari URL (misal: detail.php?id=5)
+// Ambil ID booking dari URL (Detail berdasarkan ID)
 $booking_id = isset($_GET['id']) ? mysqli_real_escape_string($koneksi, $_GET['id']) : 0;
 
-// 2. Ambil data user untuk sidebar (Gunakan nama_lengkap sesuai DB)
+// 2. Ambil data user untuk detail info di sidebar
 $user_query = mysqli_query($koneksi, "SELECT * FROM users WHERE id = '$user_id'");
 $user       = mysqli_fetch_assoc($user_query);
 
-// 3. Fetch Data Booking Detail
-// Note: Saya sesuaikan u.nama menjadi u.nama_lengkap
+// 3. Fetch Data Booking Detail secara Spesifik
 $query = mysqli_query($koneksi, "
     SELECT b.*, p.nama_paket, p.durasi_menit, p.harga as harga_paket, u.nama_lengkap as nama_user
     FROM booking b
@@ -34,7 +28,7 @@ $query = mysqli_query($koneksi, "
 
 $data = mysqli_fetch_assoc($query);
 
-// Jika data tidak ditemukan atau bukan milik user yang login, kembalikan ke riwayat
+// Jika data manipulasi URL tidak ditemukan, kembalikan ke daftar riwayat utama
 if (!$data) {
     header("Location: riwayat.php");
     exit;
@@ -47,10 +41,8 @@ if (!$data) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Booking #<?= $booking_id; ?> - GoKart Racing</title>
-    <!-- Memanggil CSS Global -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../booking/style1.css">
     <style>
-        /* Tambahan CSS Khusus Detail agar sesuai dengan UI sebelumnya */
         .detail-container { 
             max-width: 800px; 
             margin: 0 auto; 
@@ -63,17 +55,17 @@ if (!$data) {
         }
 
         .info-card {
-            background: white;
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: 12px;
             padding: 25px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #edf2f7;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
 
         .info-card h3 {
             margin-bottom: 20px;
-            color: #2d3748;
+            color: var(--text-dark);
             font-size: 1.1rem;
             border-left: 4px solid var(--primary);
             padding-left: 15px;
@@ -83,46 +75,47 @@ if (!$data) {
             display: flex; 
             justify-content: space-between; 
             padding: 12px 0; 
-            border-bottom: 1px solid #f1f1f1; 
+            border-bottom: 1px solid var(--border-color); 
         }
 
         .info-row:last-child { border-bottom: none; }
+        .label { color: var(--text-gray); font-weight: 500; }
+        .value { color: var(--text-dark); font-weight: 600; text-align: right; }
 
-        .label { color: #718096; font-weight: 500; }
-        .value { color: #2d3748; font-weight: 600; text-align: right; }
-
-        .qr-section { 
-            text-align: center; 
-            background: #f8fafc; 
-            border: 2px dashed #e2e8f0;
-            border-radius: 15px;
-            padding: 30px;
+        /* Pewarnaan Status Badge dinamis */
+        .status {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
         }
-
-        .qr-section img {
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            background: white;
-            padding: 10px;
-        }
+        .status.aktif, .status.sukses, .status.selesai { background: #d4edda; color: #155724; }
+        .status.pending { background: #fff3cd; color: #856404; }
+        .status.batal { background: #f8d7da; color: #721c24; }
 
         .btn-group { 
             display: flex; 
             gap: 15px; 
-            margin-top: 30px; 
+            margin-top: 20px; 
         }
 
-        .btn-group .btn-action {
+        .btn-action {
             flex: 1;
-            justify-content: center;
-            padding: 15px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
             cursor: pointer;
+            text-align: center;
+            border: none;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
         }
+        .btn-action.primary { background: var(--primary); color: white; }
+        .btn-action.primary:hover { background: var(--primary-dark); }
+        .btn-action.secondary { background: var(--light); color: var(--dark); border: 1px solid var(--border-color); }
+        .btn-action.secondary:hover { background: #e2e8f0; }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .btn-group { flex-direction: column; }
         }
@@ -130,7 +123,6 @@ if (!$data) {
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="brand">
                 <h2>GOKART RACING</h2>
@@ -139,31 +131,30 @@ if (!$data) {
             <nav class="nav-menu">
                 <a href="../dashboard/dashboard.php" class="nav-link">Dashboard</a>
                 <a href="../booking/booking.php" class="nav-link">Booking</a>
-                <a href="../riwayat booking/riwayat.php" class="nav-link">Riwayat Booking</a>
-                <a href="#" class="nav-link">Hasil Balapan</a>
-                <a href="#" class="nav-link">Leaderboard</a>
-                <li><a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a></li>
+                <a href="riwayat.php" class="nav-link active">Riwayat Booking</a>
+                <a href="../hasil_balapan/hasil_balapan.php" class="nav-link">Hasil Balapan</a>
+                <a href="../leaderboard/leaderboard.php" class="nav-link">Leaderboard</a>
+                <a href="../pembayaran/pembayaran.php" class="nav-link">Pembayaran</a>
+                <a href="../Profil_sayaGokart/profil_saya.php" class="nav-link">Profil Saya</a>
             </nav>
             <div class="sidebar-bottom">
                 <div class="sidebar-user">
                     <p><strong><?= htmlspecialchars($user['nama_lengkap']); ?></strong></p>
                     <small><?= htmlspecialchars($user['email']); ?></small>
                 </div>
-                <button class="logout-btn" onclick="location.href='../logout.php'">Logout</button>
+                <button class="logout-btn" onclick="if(confirm('Keluar sistem?')) location.href='../logout.php'">Logout</button>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main">
             <header class="page-header">
                 <a href="riwayat.php" style="text-decoration: none; color: var(--primary); font-weight: 600; display: inline-block; margin-bottom: 10px;">
-                    ← Kembali ke Riwayat
+                    ← Kembali ke Daftar Riwayat
                 </a>
                 <h1>Detail Pesanan #BK<?= str_pad($data['id'], 3, '0', STR_PAD_LEFT); ?></h1>
             </header>
 
             <div class="detail-container">
-                <!-- Info Status -->
                 <div class="info-card">
                     <h3>Informasi Status</h3>
                     <div class="info-row">
@@ -184,7 +175,6 @@ if (!$data) {
                     </div>
                 </div>
 
-                <!-- Detail Paket -->
                 <div class="info-card">
                     <h3>Rincian Balapan</h3>
                     <div class="info-row">
@@ -207,32 +197,20 @@ if (!$data) {
                         <span class="label">Jumlah Pemain</span>
                         <span class="value"><?= $data['jumlah_orang']; ?> Orang</span>
                     </div>
-                    <div class="info-row" style="margin-top: 15px; border-top: 2px solid #f1f1f1; padding-top: 20px;">
-                        <span class="label" style="font-size: 1.1rem; color: #2d3748;">Total Bayar</span>
+                    <div class="info-row" style="margin-top: 15px; border-top: 2px solid var(--border-color); padding-top: 20px;">
+                        <span class="label" style="font-size: 1.1rem; color: var(--text-dark);">Total Bayar</span>
                         <span class="value" style="color: var(--primary); font-size: 1.3rem;">Rp <?= number_format($data['total_harga'], 0, ',', '.'); ?></span>
                     </div>
                 </div>
 
-                <!-- Bagian QR Code (Jika Pending) -->
-                <?php if ($data['status'] == 'pending'): ?>
-                    <div class="qr-section">
-                        <h4>Scan QRIS untuk Pembayaran</h4>
-                        <p style="color: #718096; margin-bottom: 20px; font-size: 0.9rem;">Silahkan selesaikan pembayaran sebelum waktu berakhir.</p>
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=GOKART_PAY_<?= $data['id']; ?>" alt="QR Code">
-                        <p style="margin-top: 20px; font-weight: 500;">Virtual Account: <span style="color: var(--primary);">8829 0000 <?= str_pad($data['id'], 4, '0', STR_PAD_LEFT); ?></span></p>
-                    </div>
-                <?php endif; ?>
-
-                <!-- Action Buttons -->
                 <div class="btn-group">
-                    <?php if ($data['status'] == 'pending'): ?>
-                        <button class="btn-action primary" onclick="alert('Konfirmasi pembayaran terkirim! Admin akan mengecek secara manual.')">
-                            Konfirmasi Pembayaran
-                        </button>
+                    <?php if (strtolower($data['status']) == 'aktif' || strtolower($data['status']) == 'pending'): ?>
+                        <a href="../pembayaran/pembayaran.php?id=<?= $data['id']; ?>" class="btn-action primary">
+                            Pilih Metode & Bayar Sekarang
+                        </a>
                     <?php endif; ?>
-                    
                     <button class="btn-action secondary" onclick="window.print()">
-                        Cetak Bukti Booking
+                        Cetak Nota Booking
                     </button>
                 </div>
             </div>

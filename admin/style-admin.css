@@ -1,0 +1,381 @@
+:root {
+  --primary: #e63946;
+  --primary-light: #ffe5e5;
+  --dark: #1d3557;
+  --light: #f1faee;
+  --gray: #6c757d;
+  --white: #ffffff;
+  --bg-body: #f8f9fa;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --transition: all 0.25s ease;
+
+  /* Status Colors */
+  --success: #2a9d8f;
+  --success-light: #e6f6f4;
+  --warning: #f4a261;
+  --warning-light: #fef5ed;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   1. SIDEBAR NAVIGATION
+   ========================================================================== */
+.sidebar {
+  width: 260px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  border-right: 1px solid #eaeaea;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.brand h2 {
+  color: var(--dark);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.brand p {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  list-style: none;
+  margin-top: 2rem;
+  flex-grow: 1;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--gray);
+  display: block;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.sidebar-bottom {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.sidebar-user {
+  padding: 1rem;
+  background: var(--bg-body);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.sidebar-user p {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user small {
+  color: var(--gray);
+  display: block;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   2. MAIN CONTENT AREA
+   ========================================================================== */
+.main {
+  margin-left: 260px;
+  padding: 2.5rem 3.5rem;
+  width: calc(100% - 260px);
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: var(--dark);
+}
+
+.header p {
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* NOTIFIKASI / ALERT SYSTEM */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ==========================================================================
+   3. STATS CARDS GRID (COUNTER)
+   ========================================================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  border-bottom: 4px solid var(--gray);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  background-color: var(--bg-body);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.stat-card h3 {
+  font-size: 0.85rem;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card .stat-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-top: 0.2rem;
+}
+
+.stat-card .unit {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--gray);
+}
+
+/* Modifikasi Variasi Warna Kartu Statistik */
+.stat-card.alert-card {
+  border-bottom-color: var(--warning);
+}
+.stat-card.alert-card .stat-icon {
+  background-color: var(--warning-light);
+}
+
+.stat-card.success-card {
+  border-bottom-color: var(--success);
+}
+.stat-card.success-card .stat-icon {
+  background-color: var(--success-light);
+}
+
+.stat-card.money-card {
+  border-bottom-color: var(--primary);
+}
+.stat-card.money-card .stat-number {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   4. MANAGEMENT DATA TABLE
+   ========================================================================== */
+.table-container {
+  padding: 1.5rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  padding: 1rem;
+  color: var(--gray);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border-bottom: 2px solid #eee;
+  text-align: left;
+}
+
+.admin-table td {
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid #f1f1f1;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+.badge-paket {
+  background-color: #f1f5f9;
+  color: var(--dark);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.view-proof-btn {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: #f1f5f9;
+  color: var(--dark);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  transition: var(--transition);
+}
+
+.view-proof-btn:hover {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+/* ==========================================================================
+   5. ACTION CONTROL BUTTONS
+   ========================================================================== */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-approve,
+.btn-reject {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.btn-approve {
+  background-color: var(--success-light);
+  color: var(--success);
+}
+.btn-approve:hover {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.btn-reject {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+.btn-reject:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN FOR TABLES & SIDEBAR
+   ========================================================================== */
+@media (max-width: 992px) {
+  .main {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+    padding: 2rem 0.5rem;
+  }
+  .brand h2,
+  .brand p,
+  .nav-link span,
+  .sidebar-user,
+  .logout-btn span {
+    display: none;
+  }
+  .main {
+    margin-left: 80px;
+    padding: 1.5rem;
+    width: calc(100% - 80px);
+  }
+  .admin-table th,
+  .admin-table td {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+}

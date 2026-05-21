@@ -23,7 +23,7 @@ if (isset($_POST['login'])) {
             
             // LOGIKA REDIRECT BERDASARKAN ROLE
             if ($row['role'] === 'admin') {
-                header("Location: admin_dashboard.php"); 
+                header("Location: admin/dashboard.php"); 
             } else {
                 header("Location: booking/booking.PHP"); 
             }
