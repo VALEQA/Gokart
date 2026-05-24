@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2026 at 04:09 PM
+-- Generation Time: May 24, 2026 at 04:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -35,6 +35,7 @@ CREATE TABLE `booking` (
   `jam_booking` time DEFAULT NULL,
   `jumlah_orang` int(11) DEFAULT NULL,
   `total_harga` int(11) DEFAULT NULL,
+  `bukti_transfer` varchar(255) DEFAULT NULL,
   `status` enum('aktif','selesai','dibatalkan') DEFAULT 'aktif',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -43,10 +44,17 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id`, `user_id`, `paket_id`, `tanggal_booking`, `jam_booking`, `jumlah_orang`, `total_harga`, `status`, `created_at`) VALUES
-(1, 3, 4, '2026-05-21', '18:00:00', 1, 300000, 'selesai', '2026-05-21 12:13:17'),
-(2, 3, 2, '2026-05-21', '14:00:00', 1, 250000, 'selesai', '2026-05-21 13:10:36'),
-(3, 1, 3, '2026-05-21', '18:00:00', 3, 400000, 'selesai', '2026-05-21 13:11:26');
+INSERT INTO `booking` (`id`, `user_id`, `paket_id`, `tanggal_booking`, `jam_booking`, `jumlah_orang`, `total_harga`, `bukti_transfer`, `status`, `created_at`) VALUES
+(1, 3, 4, '2026-05-21', '18:00:00', 1, 300000, NULL, 'selesai', '2026-05-21 12:13:17'),
+(2, 3, 2, '2026-05-21', '14:00:00', 1, 250000, NULL, 'selesai', '2026-05-21 13:10:36'),
+(3, 1, 3, '2026-05-21', '18:00:00', 3, 400000, NULL, 'selesai', '2026-05-21 13:11:26'),
+(4, 1, 4, '2026-05-21', '18:00:00', 1, 300000, '6a0f15df8ea98.png', 'selesai', '2026-05-21 14:25:20'),
+(5, 1, 3, '2026-05-21', '16:00:00', 3, 400000, '6a0f175dd4082.png', 'selesai', '2026-05-21 14:31:50'),
+(6, 3, 3, '2026-05-21', '17:00:00', 3, 400000, '6a0f17b1f3487.png', 'selesai', '2026-05-21 14:33:11'),
+(7, 3, 4, '2026-05-21', '17:00:00', 1, 300000, '6a0f2701ddddc.png', 'selesai', '2026-05-21 15:38:25'),
+(8, 3, 4, '2026-05-22', '18:00:00', 1, 300000, NULL, 'aktif', '2026-05-22 04:02:35'),
+(9, 3, 4, '2026-05-22', '15:00:00', 1, 300000, '6a0fd632bf208.png', 'selesai', '2026-05-22 04:04:45'),
+(10, 4, 3, '2026-05-24', '13:00:00', 3, 400000, NULL, 'aktif', '2026-05-24 14:37:51');
 
 -- --------------------------------------------------------
 
@@ -62,9 +70,16 @@ CREATE TABLE `hasil_balapan` (
   `sektor_2` decimal(5,3) DEFAULT 99.999,
   `sektor_3` decimal(5,3) DEFAULT 99.999,
   `total_lap` decimal(5,3) DEFAULT 99.999,
-  `posisi_finish` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hasil_balapan`
+--
+
+INSERT INTO `hasil_balapan` (`id`, `booking_id`, `user_id`, `sektor_1`, `sektor_2`, `sektor_3`, `total_lap`, `created_at`) VALUES
+(1, 6, 3, 12.000, 12.000, 12.000, 36.000, '2026-05-21 14:40:28'),
+(2, 5, 1, 10.000, 9.000, 8.000, 27.000, '2026-05-21 14:41:25');
 
 -- --------------------------------------------------------
 
@@ -115,8 +130,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama_lengkap`, `nomor_hp`, `email`, `password`, `role`, `created_at`, `total_bermain`, `best_time`, `booking_aktif`) VALUES
-(1, 'Race Director', '08123456789', 'admin@gokart.com', '$2y$10$AdxOnxCVV3UZEY4qKFVW4OJIN/Ma.cM2Yh7Na0cN4R24RYmYH7fgi', 'admin', '2026-05-21 12:04:42', 0, 99.999, 0),
-(3, 'Andi brambang', '081234567890', 'andi@gmail.com', '$2y$10$AdxOnxCVV3UZEY4qKFVW4OJIN/Ma.cM2Yh7Na0cN4R24RYmYH7fgi', 'user', '2026-05-21 12:06:18', 0, 99.999, 0);
+(1, 'Race Director', '08123456789', 'admin@gokart.com', '$2y$10$AdxOnxCVV3UZEY4qKFVW4OJIN/Ma.cM2Yh7Na0cN4R24RYmYH7fgi', 'admin', '2026-05-21 12:04:42', 1, 27.000, 0),
+(3, 'Andi brambang', '081234567890', 'andi@gmail.com', '$2y$10$LMDtG8okX/bLDjxD8wWUvOkSFZcflIUtJf474fAHvROXkP1ZCGez.', 'user', '2026-05-21 12:06:18', 3, 36.000, 0),
+(4, 'dwi', '022545', 'Dwi@gmail.com', '$2y$10$P8zY.A2Ya4JQIS15tzm9O.bWnCYVm2ldVDxdi5pFxWKlxAMtqglSy', 'user', '2026-05-24 14:37:34', 0, 99.999, 0);
 
 --
 -- Indexes for dumped tables
@@ -159,13 +175,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `hasil_balapan`
 --
 ALTER TABLE `hasil_balapan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `paket_bermain`
@@ -177,7 +193,7 @@ ALTER TABLE `paket_bermain`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
